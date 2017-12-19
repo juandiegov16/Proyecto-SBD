@@ -1,0 +1,16 @@
+1. Título del proyecto: Harold/Danny +
+
+2. Objetivo del proyecto: Danny
+ +
+3. Objetivos específicos: JD
+ +
+4. Descripción general: JD/Harold +
+5. Descripciones funcionales: JD/Harold/Danny
++
+6. Modelo conceptual: JD
+ +
+7. Modelo lógico: Danny
+ +
+8. Diccionario de datos: JD/Danny+
+9. Reportes (álgebra relacional): Harold/JD+
+10. Flujo de ventanas: Harold
