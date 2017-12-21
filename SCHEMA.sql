@@ -6,6 +6,14 @@ create table Ingeniero(
     primary key (RUCIng));
     
 create table Gasto(
-	idGasto varchar(30)
+	idGasto varchar(30) NOT NULL, 
+    tipoGasto varchar(30) NOT NULL,
+    valor char(30) NOT NULL,
+    fecha date NOT NULL,
+    RUCIng char(13) NOT NULL,
+    foreign key (RUCIng) references Ingeniero (RUCIng),
+    primary key (idGasto));
     
-);
+create table Servicio(
+	
+    
