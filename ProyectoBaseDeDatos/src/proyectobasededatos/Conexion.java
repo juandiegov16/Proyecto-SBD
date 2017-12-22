@@ -22,6 +22,7 @@ public class Conexion {
             co = DriverManager.getConnection("jdbc:mysql://127.0.0.1/Taller?user=root&password=danny");
             stm = co.createStatement();
             ResultSet re = stm.executeQuery("Select * from ingeniero ");
+            System.out.println("CONEXION EXITOSA");
             
             while (re.next()){
                 System.out.println(re.getString("nombreIng"));
