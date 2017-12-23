@@ -24,10 +24,13 @@ import javafx.application.Platform;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
+import javafx.scene.ImageCursor;
 import javafx.scene.Scene;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 
 /**
  *
@@ -52,9 +55,22 @@ public class ProyectoBaseDeDatos extends Application {
                 }
             }
         });
-        
+
         Button btn2 = new Button();
         btn2.setText("Consultar");
+                btn2.setOnAction(new EventHandler<ActionEvent>() {
+            
+            @Override
+            public void handle(ActionEvent event) {
+                consultarBote c = new consultarBote();
+                try {
+                    c.start(primaryStage);
+                } catch (Exception ex) {
+                    Logger.getLogger(ProyectoBaseDeDatos.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        });
+                
         Button btn3 = new Button();
         btn3.setText("Consultar");
         Button btn4 = new Button();
@@ -73,16 +89,47 @@ public class ProyectoBaseDeDatos extends Application {
         });
         
         GridPane root = new GridPane();
-        
-        
-        Label consultarCliente = new Label("consultar Cliente");
+        root.setVgap(10);
+        root.setHgap(10);
+        root.setStyle("-fx-background-image: url(\"/images/barco.jpg\");-fx-background-size: 500, 700;-fx-background-repeat: no-repeat;");
+        Label consultarCliente = new Label("Consultar Cliente");
         root.add(consultarCliente,0,0);
         root.add(btn1,1,0);
                 
-        Label consultarBote = new Label("consultar Bote");
+        Label consultarBote = new Label("Consultar Bote");
         root.add(consultarBote,0,1);
         root.add(btn2,1,1);
-        
+        consultarCliente.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override public void handle(MouseEvent e) {
+                consultarCliente.setScaleX(1.1);
+                consultarCliente.setScaleY(1.1);
+            }
+        });
+        consultarCliente.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override public void handle(MouseEvent e) {
+                consultarCliente.setScaleX(1);
+                consultarCliente.setScaleY(1);
+            }
+        });
+        consultarBote.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override public void handle(MouseEvent e) {
+                consultarBote.setScaleX(1.1);
+                consultarBote.setScaleY(1.1);
+            }
+        });
+        consultarBote.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override public void handle(MouseEvent e) {
+                consultarBote.setScaleX(1);
+                consultarBote.setScaleY(1);
+            }
+        });
+        consultarBote.setFont(new Font("Arial", 15));
+        consultarBote.setWrapText(true);
+        consultarBote.setTextFill(Color.BLACK);
+        consultarCliente.setFont(new Font("Arial", 15));
+        consultarCliente.setWrapText(true);
+        consultarCliente.setTextFill(Color.BLACK);
+        /*
         Label consultarServicio = new Label("consultar Servicio");
         root.add(consultarServicio,0,2);
         root.add(btn3,1,2);
@@ -94,13 +141,17 @@ public class ProyectoBaseDeDatos extends Application {
         Label consultarGasto = new Label("consultar Gasto");
         root.add(consultarGasto,0,4);
         root.add(btn5,1,4);
-        
+        */
         root.add(salir, 2,6);
         
         root.setAlignment(Pos.CENTER);
         
-        Scene scene = new Scene(root, 500, 500);       
-        
+        Scene scene = new Scene(root); 
+
+        primaryStage.setMinHeight(300);
+        primaryStage.setMinWidth(500);
+        primaryStage.setMaxHeight(400);
+        primaryStage.setMaxWidth(500);
         
         primaryStage.setTitle("Menu Principal");
         primaryStage.setScene(scene);
