@@ -48,7 +48,7 @@ public class consultarBote {
         barra = new HBox();
         barra5= new HBox();
         Button refrescar = new Button();
-        refrescar.setText("REFRESCAR");
+        refrescar.setText("LIMPIAR");
         
         Button titulo=new Button();
         Button regresar = new Button();
@@ -196,15 +196,22 @@ public class consultarBote {
         root.setCenter(barrav);
         root.setBottom(barra5);
         root.setTop(barra6);
-        Scene scene = new Scene(root, 500, 350);       
+        Scene scene = new Scene(root);       
         primaryStage.setTitle("Consulta Bote");
         primaryStage.setScene(scene);
+        primaryStage.setMinHeight(450);
+
         primaryStage.show();
         
         refrescar.setOnAction(new EventHandler<ActionEvent>() {
             
             @Override
             public void handle(ActionEvent event) {
+                serialt.clear();
+                marcat.clear();
+                modelot.clear();
+                longuitudt.clear();
+                cedulat.clear();
                 try {
                     Conexion();
                 } catch (SQLException ex) {

@@ -73,10 +73,46 @@ public class ProyectoBaseDeDatos extends Application {
                 
         Button btn3 = new Button();
         btn3.setText("Consultar");
+                btn3.setOnAction(new EventHandler<ActionEvent>() {
+            
+            @Override
+            public void handle(ActionEvent event) {
+                consultaServicio c = new consultaServicio();
+                try {
+                    c.start(primaryStage);
+                } catch (Exception ex) {
+                    Logger.getLogger(ProyectoBaseDeDatos.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        });
         Button btn4 = new Button();
         btn4.setText("Consultar");
+         btn4.setOnAction(new EventHandler<ActionEvent>() {
+            
+            @Override
+            public void handle(ActionEvent event) {
+                consultaGasto c = new consultaGasto();
+                try {
+                    c.start(primaryStage);
+                } catch (Exception ex) {
+                    Logger.getLogger(ProyectoBaseDeDatos.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        });
         Button btn5 = new Button();
         btn5.setText("Consultar");
+        btn5.setOnAction(new EventHandler<ActionEvent>() {
+            
+            @Override
+            public void handle(ActionEvent event) {
+                consultaRepuesto c = new consultaRepuesto();
+                try {
+                    c.start(primaryStage);
+                } catch (Exception ex) {
+                    Logger.getLogger(ProyectoBaseDeDatos.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        });
         
         Button salir = new Button();
         salir.setText("SALIR");
@@ -92,6 +128,7 @@ public class ProyectoBaseDeDatos extends Application {
         root.setVgap(10);
         root.setHgap(10);
         root.setStyle("-fx-background-image: url(\"/images/barco.jpg\");-fx-background-size: 500, 700;-fx-background-repeat: no-repeat;");
+        
         Label consultarCliente = new Label("Consultar Cliente");
         root.add(consultarCliente,0,0);
         root.add(btn1,1,0);
@@ -99,6 +136,19 @@ public class ProyectoBaseDeDatos extends Application {
         Label consultarBote = new Label("Consultar Bote");
         root.add(consultarBote,0,1);
         root.add(btn2,1,1);
+        
+        Label consultarServicio = new Label("Consultar Servicio-Factura");
+        root.add(consultarServicio,0,2);
+        root.add(btn3,1,2);
+        
+        Label consultarGasto = new Label("Consultar Gasto");
+        root.add(consultarGasto,0,3);
+        root.add(btn4,1,3);
+        
+        Label consultarRepuesto = new Label("Consultar Repuesto");
+        root.add(consultarRepuesto,0,4);
+        root.add(btn5,1,4);
+        
         consultarCliente.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override public void handle(MouseEvent e) {
                 consultarCliente.setScaleX(1.1);
@@ -123,12 +173,60 @@ public class ProyectoBaseDeDatos extends Application {
                 consultarBote.setScaleY(1);
             }
         });
+        consultarServicio.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override public void handle(MouseEvent e) {
+                consultarServicio.setScaleX(1.1);
+                consultarServicio.setScaleY(1.1);
+            }
+        });
+        consultarServicio.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override public void handle(MouseEvent e) {
+                consultarServicio.setScaleX(1);
+                consultarServicio.setScaleY(1);
+            }
+        });
+        
+        consultarGasto.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override public void handle(MouseEvent e) {
+                consultarGasto.setScaleX(1.1);
+                consultarGasto.setScaleY(1.1);
+            }
+        });
+        consultarGasto.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override public void handle(MouseEvent e) {
+                consultarGasto.setScaleX(1);
+                consultarGasto.setScaleY(1);
+            }
+        });
+        
+        consultarRepuesto.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override public void handle(MouseEvent e) {
+                consultarRepuesto.setScaleX(1.1);
+                consultarRepuesto.setScaleY(1.1);
+            }
+        });
+        consultarRepuesto.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override public void handle(MouseEvent e) {
+                consultarRepuesto.setScaleX(1);
+                consultarRepuesto.setScaleY(1);
+            }
+        });
+        
         consultarBote.setFont(new Font("Arial", 15));
         consultarBote.setWrapText(true);
         consultarBote.setTextFill(Color.BLACK);
         consultarCliente.setFont(new Font("Arial", 15));
         consultarCliente.setWrapText(true);
         consultarCliente.setTextFill(Color.BLACK);
+        consultarServicio.setFont(new Font("Arial", 15));
+        consultarServicio.setWrapText(true);
+        consultarServicio.setTextFill(Color.BLACK);
+        consultarGasto.setFont(new Font("Arial", 15));
+        consultarGasto.setWrapText(true);
+        consultarGasto.setTextFill(Color.BLACK);
+        consultarRepuesto.setFont(new Font("Arial", 15));
+        consultarRepuesto.setWrapText(true);
+        consultarRepuesto.setTextFill(Color.BLACK);
         /*
         Label consultarServicio = new Label("consultar Servicio");
         root.add(consultarServicio,0,2);
@@ -150,7 +248,7 @@ public class ProyectoBaseDeDatos extends Application {
 
         primaryStage.setMinHeight(300);
         primaryStage.setMinWidth(500);
-        primaryStage.setMaxHeight(400);
+        primaryStage.setMaxHeight(300);
         primaryStage.setMaxWidth(500);
         
         primaryStage.setTitle("Menu Principal");
