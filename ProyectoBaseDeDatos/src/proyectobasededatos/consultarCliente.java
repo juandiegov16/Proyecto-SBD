@@ -53,6 +53,7 @@ public class consultarCliente extends Application {
     Statement stm;
     ResultSet re;
     BorderPane root;
+    String tempo;
     @Override
     public void start(Stage primaryStage) throws Exception {
         barrav = new VBox();
@@ -229,6 +230,7 @@ public class consultarCliente extends Application {
             public void handle(ActionEvent event) {
                 try {
                     cedulat.setEditable(true);
+                    
                     nombret.setEditable(false);
                     direcciont.setEditable(false);
                     telefonot.setEditable(false); 
@@ -246,7 +248,7 @@ public class consultarCliente extends Application {
             public void handle(ActionEvent event) {
                 int confirmado = JOptionPane.showConfirmDialog(null,"¿Deseas modificar la información..?");
                 String ced = cedulat.getText(), nom= nombret.getText(), dir = direcciont.getText(), tel = telefonot.getText();
-
+                tempo = cedulat.getText();
                 if (JOptionPane.OK_OPTION == confirmado){
                     cedulat.setEditable(true);
                     nombret.setEditable(true);
@@ -263,7 +265,7 @@ public class consultarCliente extends Application {
             
             @Override
             public void handle(ActionEvent event) {
-             
+                    
                     String ced = cedulat.getText(), nom= nombret.getText(), dir = direcciont.getText(), tel = telefonot.getText();
                     try{
                         Class.forName("com.mysql.jdbc.Driver");
@@ -273,7 +275,7 @@ public class consultarCliente extends Application {
                         stm.setString(2,nom);
                         stm.setString(3,dir);
                         stm.setString(4,tel);
-                        stm.setString(5,ced);
+                        stm.setString(5,tempo);
                         stm.executeUpdate();
                         cedulat.clear();
                         telefonot.clear();
@@ -281,8 +283,6 @@ public class consultarCliente extends Application {
                         nombret.clear();
                         JOptionPane.showMessageDialog(null, "MODIFICADO CON EXITO");
                         
-                    }catch(MySQLIntegrityConstraintViolationException msicve){
-                        JOptionPane.showMessageDialog(null, "Datos ya existentes");
                     }catch(ClassNotFoundException exc){
                         exc.printStackTrace();
                     

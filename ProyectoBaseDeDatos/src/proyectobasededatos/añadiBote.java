@@ -6,8 +6,10 @@
 package proyectobasededatos;
 
 import Datos.Cliente;
+import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -29,6 +31,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -212,10 +215,97 @@ public class añadiBote {
                 modelot.clear();
                 longuitudt.clear();
                 cedulat.clear();
-               
+                try {
+                    Conexion();
+                } catch (SQLException ex) {
+                    Logger.getLogger(consultarBote.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
+        añadir.setOnAction(new EventHandler<ActionEvent>() {
+            
+            @Override
+            public void handle(ActionEvent event) {
+             
+                    String serial = serialt.getText(), marc= marcat.getText(), mode = modelot.getText(), longi = longuitudt.getText(),ced = cedulat.getText();
+                    try{
+                        Class.forName("com.mysql.jdbc.Driver");
+                        co = DriverManager.getConnection("jdbc:mysql://127.0.0.1/taller_re?user=root&password=root");
+                        PreparedStatement stm = co.prepareStatement("INSERT into BOTE(numSB,marcaBote,modeloBote,eslora,cedulaRuc) VALUES (?,?,?,?,?)");
+                        stm.setString(1,serial);
+                        stm.setString(2,marc);
+                        stm.setString(3,mode);
+                        stm.setString(4,longi);
+                        stm.setString(5,ced);
+                        stm.executeUpdate();
+                        cedulat.clear();
+                        serialt.clear();
+                        marcat.clear();
+                        modelot.clear();
+                        longuitudt.clear();
+                
+                        JOptionPane.showMessageDialog(null, "AÑADIDO CON EXITO");
+                        
+                        
+                    }catch(MySQLIntegrityConstraintViolationException msicve){
+                        JOptionPane.showMessageDialog(null, "Datos ya existentes");
+                    }catch(ClassNotFoundException exc){
+                        exc.printStackTrace();
+                    
+                    }catch(SQLException ex){
+                        Logger.getLogger(consultarCliente.class.getName()).log(Level.SEVERE, null,ex);
+                    }
+                }
+                 
+            
+        });
 
+    }
+    public  void Conexion(TextField serial,TextField marca,TextField modelo,TextField tamaño,TextField cedula) throws SQLException{
+                    
+        try{
+            Class.forName("com.mysql.jdbc.Driver");
+            co = DriverManager.getConnection("jdbc:mysql://127.0.0.1/taller_re?user=root&password=danny");
+            stm = co.createStatement();
+            re = stm.executeQuery("Select * from bote ");
+            while (re.next()){                 
+                if(serial.getText() == null ? re.getString("numSB") == null : serial.getText().equals(re.getString("numSB"))){
+                marca.setText(re.getString("marcaBote"));
+                modelo.setText(re.getString("modeloBote"));
+                tamaño.setText(re.getString("eslora"));
+                cedula.setText(re.getString("cedulaRUC"));
+                tamaño.setEditable(false);
+                marca.setEditable(false);
+                modelo.setEditable(false);
+                cedula.setEditable(false);
+                }
+            }
+        }catch (ClassNotFoundException exc){
+            exc.printStackTrace();
+        }
+        catch(SQLException ex){
+            Logger.getLogger(consultarBote.class.getName()).log(Level.SEVERE, null,ex);
+        }
+    } 
+    public  void Conexion() throws SQLException{
+                    
+        try{
+            Class.forName("com.mysql.jdbc.Driver");
+            co = DriverManager.getConnection("jdbc:mysql://127.0.0.1/taller_re?user=root&password=danny");
+            stm = co.createStatement();
+            re = stm.executeQuery("Select * from bote ");
+            System.out.println("CONEXION EXITOSA");
+            Cliente c;
+            while (re.next()){                 
+                System.out.println(re.getString("numSB")+"--"+re.getString("marcaBote")+"--"+re.getString("modeloBote")+"--"+re.getString("eslora")+"--"+re.getString("cedulaRUC"));
+                
+            }
+        }catch (ClassNotFoundException exc){
+            exc.printStackTrace();
+        }
+        catch(SQLException ex){
+            Logger.getLogger(consultarBote.class.getName()).log(Level.SEVERE, null,ex);
+        }
     }
  
 }

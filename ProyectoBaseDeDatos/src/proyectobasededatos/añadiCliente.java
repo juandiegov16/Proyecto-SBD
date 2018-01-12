@@ -5,7 +5,9 @@
  */
 package proyectobasededatos;
 
-import com.mysql.jdbc.exceptions.MySQLIntegrityConstraintViolationException;
+
+import Datos.Cliente;
+import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -192,18 +194,15 @@ public class añadiCliente {
                 telefonot.clear();
                 direcciont.clear();
                 nombret.clear();
-                
-                
-            }
-        });
-        refrescar.setOnAction(new EventHandler<ActionEvent>() {
-            
-            @Override
-            public void handle(ActionEvent event) {
-               //AQUI DEBES PONER LA CONEXION Y ENVIAR LOS DATOS DE LOS CUADROS DE TEXTO AL MYSQL CON INSERT
+                try {
+                    Conexion();
+                } catch (SQLException ex) {
+                    Logger.getLogger(consultarBote.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 
             }
         });
+        
         añadir.setOnAction(new EventHandler<ActionEvent>() {
             
             @Override
@@ -219,6 +218,11 @@ public class añadiCliente {
                         stm.setString(3,dir);
                         stm.setString(4,tel);
                         stm.executeUpdate();
+                        cedulat.clear();
+                        telefonot.clear();
+                        direcciont.clear();
+                        nombret.clear();
+                        JOptionPane.showMessageDialog(null, "AÑADIDO CON EXITO");
                         
                         
                     }catch(MySQLIntegrityConstraintViolationException msicve){
@@ -234,4 +238,51 @@ public class añadiCliente {
             
         });
     }
+    public  void Conexion(TextField cedula,TextField nombre,TextField direccion,TextField telefono) throws SQLException{
+                    
+        try{
+            Class.forName("com.mysql.jdbc.Driver");
+            co = DriverManager.getConnection("jdbc:mysql://127.0.0.1/taller_re?user=root&password=root");
+            stm = co.createStatement();
+            re = stm.executeQuery("Select * from cliente ");
+            Cliente c;
+            while (re.next()){                 
+                if(cedula.getText() == null ? re.getString("cedulaRUC") == null : cedula.getText().equals(re.getString("cedulaRUC"))){
+                nombre.setText(re.getString("nombreCliente"));
+                direccion.setText(re.getString("direccionCliente"));
+                telefono.setText(re.getString("telefonoCliente"));
+                cedula.setEditable(false);
+                nombre.setEditable(false);
+                direccion.setEditable(false);
+                telefono.setEditable(false); 
+                }
+            }
+        }catch (ClassNotFoundException exc){
+            exc.printStackTrace();
+        }
+        catch(SQLException ex){
+            Logger.getLogger(consultarCliente.class.getName()).log(Level.SEVERE, null,ex);
+        }
+    } 
+    public  void Conexion() throws SQLException{
+                    
+        try{
+            Class.forName("com.mysql.jdbc.Driver");
+            co = DriverManager.getConnection("jdbc:mysql://127.0.0.1/taller_re?user=root&password=root");
+            stm = co.createStatement();
+            re = stm.executeQuery("Select * from cliente ");
+            System.out.println("CONEXION EXITOSA");
+            Cliente c;
+            while (re.next()){                 
+                System.out.println(re.getString("nombreCliente")+"--"+re.getString("cedulaRUC"));
+                
+            }
+        }catch (ClassNotFoundException exc){
+            exc.printStackTrace();
+        }
+        catch(SQLException ex){
+            Logger.getLogger(consultarCliente.class.getName()).log(Level.SEVERE, null,ex);
+        }
+    }   
 }
+

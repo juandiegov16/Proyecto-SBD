@@ -8,6 +8,7 @@ package proyectobasededatos;
 import Datos.Cliente;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -29,6 +30,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -42,6 +44,7 @@ public class consultarBote {
     Statement stm;
     ResultSet re;
     BorderPane root;
+    String tempo;
     public void start(Stage primaryStage) throws Exception {
         barrav = new VBox();
         root = new BorderPane();
@@ -50,7 +53,7 @@ public class consultarBote {
         Button refrescar = new Button();
         refrescar.setText("LIMPIAR");
         Button añadir = new Button();
-        añadir.setText("AGREGAR");
+        añadir.setText("ACEPTAR");
         Button modificar = new Button();
         modificar.setText("MODIFICAR");
         Button titulo=new Button();
@@ -204,7 +207,11 @@ public class consultarBote {
         primaryStage.setScene(scene);
         primaryStage.setMinWidth(550);
         primaryStage.setMinHeight(450);
-
+        serialt.setEditable(true);
+        marcat.setEditable(false);
+        modelot.setEditable(false);
+        longuitudt.setEditable(false);
+        cedulat.setEditable(false);
         primaryStage.show();
         
         refrescar.setOnAction(new EventHandler<ActionEvent>() {
@@ -229,20 +236,78 @@ public class consultarBote {
             @Override
             public void handle(ActionEvent event) {
                 try {
+                    serialt.setEditable(true);
+                    marcat.setEditable(false);
+                    modelot.setEditable(false);
+                    longuitudt.setEditable(false);
+                    cedulat.setEditable(false);
                     Conexion(serialt,marcat,modelot,longuitudt,cedulat);
                 } catch (SQLException ex) {
                     Logger.getLogger(consultarBote.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         });
-        
+        modificar.setOnAction(new EventHandler<ActionEvent>() {
+            
+            @Override
+            public void handle(ActionEvent event) {
+                int confirmado = JOptionPane.showConfirmDialog(null,"¿Deseas modificar la información..?");
+                String serial = serialt.getText(), marc= marcat.getText(), mode = modelot.getText(), longi = longuitudt.getText(),ced = cedulat.getText();
+                tempo = serialt.getText();
+                if (JOptionPane.OK_OPTION == confirmado){
+                    
+                    serialt.setEditable(true);
+                    marcat.setEditable(true);
+                    modelot.setEditable(true);
+                    longuitudt.setEditable(true);
+                    cedulat.setEditable(true);
+                }
+                } 
+            
+                
+            });
+        añadir.setOnAction(new EventHandler<ActionEvent>() {
+            
+            @Override
+            public void handle(ActionEvent event) {
+             
+                    String serial = serialt.getText(), marc= marcat.getText(), mode = modelot.getText(), longi = longuitudt.getText(),ced = cedulat.getText();
+                    try{
+                        Class.forName("com.mysql.jdbc.Driver");
+                        co = DriverManager.getConnection("jdbc:mysql://127.0.0.1/taller_re?user=root&password=root");
+                        PreparedStatement stm = co.prepareStatement("Update bote set numSB = ?, marcaBote = ?,modeloBote = ? ,eslora = ?,cedulaRuc = ? where numSB = ?");
+                        stm.setString(1,serial);
+                        stm.setString(2,marc);
+                        stm.setString(3,mode);
+                        stm.setString(4,longi);
+                        stm.setString(5,ced);
+                        stm.setString(6,tempo);
+                        stm.executeUpdate();
+                        cedulat.clear();
+                        serialt.clear();
+                        marcat.clear();
+                        modelot.clear();
+                        longuitudt.clear();
+                
+                        JOptionPane.showMessageDialog(null, "MODIFICADO CON EXITO");
+                        
+                    }catch(ClassNotFoundException exc){
+                        exc.printStackTrace();
+                    
+                    }catch(SQLException ex){
+                        Logger.getLogger(consultarCliente.class.getName()).log(Level.SEVERE, null,ex);
+                    }
+                }
+                 
+            
+        });
     }
 
     public  void Conexion(TextField serial,TextField marca,TextField modelo,TextField tamaño,TextField cedula) throws SQLException{
                     
         try{
             Class.forName("com.mysql.jdbc.Driver");
-            co = DriverManager.getConnection("jdbc:mysql://127.0.0.1/taller_re?user=root&password=danny");
+            co = DriverManager.getConnection("jdbc:mysql://127.0.0.1/taller_re?user=root&password=root");
             stm = co.createStatement();
             re = stm.executeQuery("Select * from bote ");
             while (re.next()){                 
@@ -268,7 +333,7 @@ public class consultarBote {
                     
         try{
             Class.forName("com.mysql.jdbc.Driver");
-            co = DriverManager.getConnection("jdbc:mysql://127.0.0.1/taller_re?user=root&password=danny");
+            co = DriverManager.getConnection("jdbc:mysql://127.0.0.1/taller_re?user=root&password=root");
             stm = co.createStatement();
             re = stm.executeQuery("Select * from bote ");
             System.out.println("CONEXION EXITOSA");
