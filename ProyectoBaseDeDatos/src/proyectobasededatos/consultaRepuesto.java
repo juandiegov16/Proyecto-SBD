@@ -49,7 +49,10 @@ public class consultaRepuesto {
         
         Button refrescar = new Button();
         refrescar.setText("LIMPIAR");
-        
+        Button añadir = new Button();
+        añadir.setText("AGREGAR");
+        Button modificar = new Button();
+        modificar.setText("MODIFICAR");
         Button titulo=new Button();
         Button regresar = new Button();
         regresar.setText("REGRESAR");
@@ -73,14 +76,14 @@ public class consultaRepuesto {
         });
         
         //IMAGEN DE PORTADA
-        titulo.setStyle("-fx-background-image: url(\"/images/logo.jpg\");-fx-background-size: 500, 150;-fx-background-repeat: no-repeat;");
-        titulo.setPrefSize(500, 150);
+        titulo.setStyle("-fx-background-image: url(\"/images/logo.jpg\");-fx-background-size: 550, 150;-fx-background-repeat: no-repeat;");
+        titulo.setPrefSize(550, 150);
         titulo.setDisable(false);
         //
         Button consultar = new Button();
         consultar.setText("CONSULTAR");
         //root.setStyle("-fx-background-image: url(\"/images/barco.jpg\");-fx-background-size: 500, 500;-fx-background-repeat: no-repeat;");
-        barrav.setStyle("-fx-background-image: url(\"/images/barco.jpg\");-fx-background-size: 500, 700;-fx-background-repeat: no-repeat;");
+        barrav.setStyle("-fx-background-image: url(\"/images/barco.jpg\");-fx-background-size: 550, 700;-fx-background-repeat: no-repeat;");
         
         //LABELS QUE CONTIENEN LOS CAMPOS DE LA TABLA
         Label serialre = new Label("Ingrese el n° Serial del Repuesto: ");
@@ -209,7 +212,7 @@ public class consultaRepuesto {
         barra5.getChildren().addAll(frecuencia,frecuenciat); 
         barra6.getChildren().addAll(idfactura,idfacturat);
         
-        barrabo.getChildren().addAll(salir, regresar, refrescar, consultar);
+        barrabo.getChildren().addAll(salir, regresar, refrescar, consultar,modificar,añadir);
         barra.setSpacing(15);
         barra.setAlignment(Pos.CENTER);
         barra2.setSpacing(15);
@@ -239,7 +242,7 @@ public class consultaRepuesto {
         Scene scene = new Scene(root);       
         primaryStage.setTitle("Consulta Factura-Servicio");
         primaryStage.setScene(scene);
-        primaryStage.setMinWidth(500);
+        primaryStage.setMinWidth(550);
         primaryStage.setMinHeight(450);
         primaryStage.show();
         

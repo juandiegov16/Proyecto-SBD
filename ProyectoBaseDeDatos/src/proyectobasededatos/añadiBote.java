@@ -34,8 +34,8 @@ import javafx.stage.Stage;
  *
  * @author Usuario
  */
-public class consultarBote {
-     VBox barrav ;
+public class añadiBote {
+      VBox barrav ;
     HBox barra, barra2,barra3,barra4,barra5,barra6,barra7;
     ComboBox cedulas;
     Connection co;
@@ -49,10 +49,7 @@ public class consultarBote {
         barra5= new HBox();
         Button refrescar = new Button();
         refrescar.setText("LIMPIAR");
-        Button añadir = new Button();
-        añadir.setText("AGREGAR");
-        Button modificar = new Button();
-        modificar.setText("MODIFICAR");
+        
         Button titulo=new Button();
         Button regresar = new Button();
         regresar.setText("REGRESAR");
@@ -64,6 +61,8 @@ public class consultarBote {
                 m.start(primaryStage);
             }
         });
+        Button añadir = new Button();
+        añadir.setText("AÑADIR");
         
         Button salir = new Button();
         salir.setText("SALIR");
@@ -75,13 +74,11 @@ public class consultarBote {
             }
         });
         barra6=new HBox();
-        titulo.setStyle("-fx-background-image: url(\"/images/logo.jpg\");-fx-background-size: 550, 150;-fx-background-repeat: no-repeat;");
-        titulo.setPrefSize(550, 150);
+        titulo.setStyle("-fx-background-image: url(\"/images/logo.jpg\");-fx-background-size: 500, 150;-fx-background-repeat: no-repeat;");
+        titulo.setPrefSize(500, 150);
         titulo.setDisable(false);
-        Button consultar = new Button();
-        consultar.setText("CONSULTAR");
         //root.setStyle("-fx-background-image: url(\"/images/barco.jpg\");-fx-background-size: 500, 500;-fx-background-repeat: no-repeat;");
-        barrav.setStyle("-fx-background-image: url(\"/images/barco.jpg\");-fx-background-size: 550, 700;-fx-background-repeat: no-repeat;");
+        barrav.setStyle("-fx-background-image: url(\"/images/barco.jpg\");-fx-background-size: 500, 700;-fx-background-repeat: no-repeat;");
         Label serial = new Label("Ingrese el Serial: ");
         serial.setFont(new Font("Arial", 15));
         serial.setWrapText(true);
@@ -98,7 +95,7 @@ public class consultarBote {
                 serial.setScaleY(1);
             }
         });
-        Label marca = new Label("Marca del bote: ");
+        Label marca = new Label("Ingrese Marca del bote: ");
         marca.setFont(new Font("Arial", 15));
         marca.setWrapText(true);
         marca.setTextFill(Color.BLACK);
@@ -114,7 +111,7 @@ public class consultarBote {
                 marca.setScaleY(1);
             }
         });
-        Label modelo = new Label("Modelo: ");
+        Label modelo = new Label("Ingrese Modelo: ");
         modelo.setFont(new Font("Arial", 15));
         modelo.setWrapText(true);
         modelo.setTextFill(Color.BLACK);
@@ -130,7 +127,7 @@ public class consultarBote {
                 modelo.setScaleY(1);
             }
         });
-        Label longitud = new Label("Longuitud Bote: ");
+        Label longitud = new Label("Ingrese Longuitud Bote: ");
         longitud.setFont(new Font("Arial", 15));
         longitud.setWrapText(true);
         longitud.setTextFill(Color.BLACK);
@@ -146,7 +143,7 @@ public class consultarBote {
                 longitud.setScaleY(1);
             }
         });
-        Label cedula = new Label("Cedula Cliente: ");
+        Label cedula = new Label("Ingrese Cedula Cliente: ");
         cedula.setFont(new Font("Arial", 15));
         cedula.setWrapText(true);
         cedula.setTextFill(Color.BLACK);
@@ -182,7 +179,7 @@ public class consultarBote {
         barra3.setAlignment(Pos.CENTER);
         barra4.setSpacing(15);
         barra4.setAlignment(Pos.CENTER);
-        barra5.getChildren().addAll(salir, regresar, refrescar, consultar,modificar,añadir);
+        barra5.getChildren().addAll(salir, regresar, refrescar, añadir);
         barra5.setAlignment(Pos.CENTER);
         barra5.setSpacing(15);
         cedulas= new ComboBox();
@@ -202,7 +199,6 @@ public class consultarBote {
         Scene scene = new Scene(root);       
         primaryStage.setTitle("Consulta Bote");
         primaryStage.setScene(scene);
-        primaryStage.setMinWidth(550);
         primaryStage.setMinHeight(450);
 
         primaryStage.show();
@@ -216,72 +212,10 @@ public class consultarBote {
                 modelot.clear();
                 longuitudt.clear();
                 cedulat.clear();
-                try {
-                    Conexion();
-                } catch (SQLException ex) {
-                    Logger.getLogger(consultarBote.class.getName()).log(Level.SEVERE, null, ex);
-                }
+               
             }
         });
 
-        consultar.setOnAction(new EventHandler<ActionEvent>() {
-            
-            @Override
-            public void handle(ActionEvent event) {
-                try {
-                    Conexion(serialt,marcat,modelot,longuitudt,cedulat);
-                } catch (SQLException ex) {
-                    Logger.getLogger(consultarBote.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-        });
-        
     }
-
-    public  void Conexion(TextField serial,TextField marca,TextField modelo,TextField tamaño,TextField cedula) throws SQLException{
-                    
-        try{
-            Class.forName("com.mysql.jdbc.Driver");
-            co = DriverManager.getConnection("jdbc:mysql://127.0.0.1/taller_re?user=root&password=danny");
-            stm = co.createStatement();
-            re = stm.executeQuery("Select * from bote ");
-            while (re.next()){                 
-                if(serial.getText() == null ? re.getString("numSB") == null : serial.getText().equals(re.getString("numSB"))){
-                marca.setText(re.getString("marcaBote"));
-                modelo.setText(re.getString("modeloBote"));
-                tamaño.setText(re.getString("eslora"));
-                cedula.setText(re.getString("cedulaRUC"));
-                tamaño.setEditable(false);
-                marca.setEditable(false);
-                modelo.setEditable(false);
-                cedula.setEditable(false);
-                }
-            }
-        }catch (ClassNotFoundException exc){
-            exc.printStackTrace();
-        }
-        catch(SQLException ex){
-            Logger.getLogger(consultarBote.class.getName()).log(Level.SEVERE, null,ex);
-        }
-    } 
-    public  void Conexion() throws SQLException{
-                    
-        try{
-            Class.forName("com.mysql.jdbc.Driver");
-            co = DriverManager.getConnection("jdbc:mysql://127.0.0.1/taller_re?user=root&password=danny");
-            stm = co.createStatement();
-            re = stm.executeQuery("Select * from bote ");
-            System.out.println("CONEXION EXITOSA");
-            Cliente c;
-            while (re.next()){                 
-                System.out.println(re.getString("numSB")+"--"+re.getString("marcaBote")+"--"+re.getString("modeloBote")+"--"+re.getString("eslora")+"--"+re.getString("cedulaRUC"));
-                
-            }
-        }catch (ClassNotFoundException exc){
-            exc.printStackTrace();
-        }
-        catch(SQLException ex){
-            Logger.getLogger(consultarBote.class.getName()).log(Level.SEVERE, null,ex);
-        }
-    }   
+ 
 }

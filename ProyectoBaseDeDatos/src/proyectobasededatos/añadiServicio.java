@@ -5,15 +5,12 @@
  */
 package proyectobasededatos;
 
-import Datos.Cliente;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -35,7 +32,7 @@ import javafx.stage.Stage;
  *
  * @author Usuario
  */
-public class consultaServicio extends Application{
+public class añadiServicio {
     VBox barrav ;
     HBox barra, barra2,barra3,barra4,barra5,barra6,barra7,barra8,barra9,barra10,barrabo,barrati;
     ComboBox cedulas;
@@ -43,7 +40,7 @@ public class consultaServicio extends Application{
     Statement stm;
     ResultSet re;
     BorderPane root;
-    @Override
+    
     public void start(Stage primaryStage) throws Exception {
         barrav = new VBox();
         root = new BorderPane();
@@ -51,9 +48,8 @@ public class consultaServicio extends Application{
         Button refrescar = new Button();
         refrescar.setText("LIMPIAR");
         Button añadir = new Button();
-        añadir.setText("AGREGAR");
-        Button modificar = new Button();
-        modificar.setText("MODIFICAR");
+        añadir.setText("AÑADIR");
+        
         Button titulo=new Button();
         Button regresar = new Button();
         regresar.setText("REGRESAR");
@@ -81,8 +77,6 @@ public class consultaServicio extends Application{
         titulo.setPrefSize(550, 150);
         titulo.setDisable(false);
         //
-        Button consultar = new Button();
-        consultar.setText("CONSULTAR");
         //root.setStyle("-fx-background-image: url(\"/images/barco.jpg\");-fx-background-size: 500, 500;-fx-background-repeat: no-repeat;");
         barrav.setStyle("-fx-background-image: url(\"/images/barco.jpg\");-fx-background-size: 550, 950;-fx-background-repeat: no-repeat;");
         
@@ -104,7 +98,7 @@ public class consultaServicio extends Application{
             }
         });
         
-        Label fecha = new Label("Fecha: ");
+        Label fecha = new Label("Ingrese Fecha: ");
         fecha.setFont(new Font("Arial", 15));
         fecha.setWrapText(true);
         fecha.setTextFill(Color.BLACK);
@@ -121,7 +115,7 @@ public class consultaServicio extends Application{
             }
         });
         
-        Label servicio = new Label("Tipo de Servicio: ");
+        Label servicio = new Label("Ingrese Tipo de Servicio: ");
         servicio.setFont(new Font("Arial", 15));
         servicio.setWrapText(true);
         servicio.setTextFill(Color.BLACK);
@@ -138,7 +132,7 @@ public class consultaServicio extends Application{
             }
         });
         
-        Label descripcion = new Label("Descripción: ");
+        Label descripcion = new Label("Ingrese Descripción: ");
         descripcion.setFont(new Font("Arial", 15));
         descripcion.setWrapText(true);
         descripcion.setTextFill(Color.BLACK);
@@ -155,7 +149,7 @@ public class consultaServicio extends Application{
             }
         });
         
-        Label valor = new Label("Valor de la Factura: ");
+        Label valor = new Label("Ingrese Valor de la Factura: ");
         valor.setFont(new Font("Arial", 15));
         valor.setWrapText(true);
         valor.setTextFill(Color.BLACK);
@@ -172,7 +166,7 @@ public class consultaServicio extends Application{
             }
         });
         
-        Label formapago = new Label("Forma de Pago: ");
+        Label formapago = new Label("Ingrese Forma de Pago: ");
         formapago.setFont(new Font("Arial", 15));
         formapago.setWrapText(true);
         formapago.setTextFill(Color.BLACK);
@@ -189,7 +183,7 @@ public class consultaServicio extends Application{
             }
         });
         
-        Label numsr = new Label("Número Serial de Repuesto: ");
+        Label numsr = new Label("Ingrese Número Serial de Repuesto: ");
         numsr.setFont(new Font("Arial", 15));
         numsr.setWrapText(true);
         numsr.setTextFill(Color.BLACK);
@@ -206,7 +200,7 @@ public class consultaServicio extends Application{
             }
         });
         
-        Label rucing = new Label("RUC del Ingeniero: ");
+        Label rucing = new Label("Ingrese RUC del Ingeniero: ");
         rucing.setFont(new Font("Arial", 15));
         rucing.setWrapText(true);
         rucing.setTextFill(Color.BLACK);
@@ -223,7 +217,7 @@ public class consultaServicio extends Application{
             }
         });
         
-        Label numorden = new Label("Número de Orden: ");
+        Label numorden = new Label("Ingrese Número de Orden: ");
         numorden.setFont(new Font("Arial", 15));
         numorden.setWrapText(true);
         numorden.setTextFill(Color.BLACK);
@@ -240,7 +234,7 @@ public class consultaServicio extends Application{
             }
         });
         
-        Label cedularuc = new Label("Número de Cédula: ");
+        Label cedularuc = new Label("Ingrese Número de Cédula: ");
         cedularuc.setFont(new Font("Arial", 15));
         cedularuc.setWrapText(true);
         cedularuc.setTextFill(Color.BLACK);
@@ -292,7 +286,7 @@ public class consultaServicio extends Application{
         barra9.getChildren().addAll(numorden,numordent);
         barra10.getChildren().addAll(cedularuc,cedularuct);
         
-        barrabo.getChildren().addAll(salir, regresar, refrescar, consultar,modificar,añadir);
+        barrabo.getChildren().addAll(salir, regresar, refrescar,añadir);
         barra.setSpacing(15);
         barra.setAlignment(Pos.CENTER);
         barra2.setSpacing(15);
@@ -347,71 +341,8 @@ public class consultaServicio extends Application{
                 rucingt.clear();
                 numordent.clear();
                 cedularuct.clear();
-                try {
-                    Conexion();
-                } catch (SQLException ex) {
-                    Logger.getLogger(consultaServicio.class.getName()).log(Level.SEVERE, null, ex);
-                }
+               
             }
         });
     }
-   /*     consultar.setOnAction(new EventHandler<ActionEvent>() {
-            
-            @Override
-            public void handle(ActionEvent event) {
-                try {
-                    Conexion(cedulat,nombret,direcciont,telefonot);
-                } catch (SQLException ex) {
-                    Logger.getLogger(consultarCliente.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-        });
-        
-    }
-
-    public  void Conexion(TextField cedula,TextField nombre,TextField direccion,TextField telefono) throws SQLException{
-                    
-        try{
-            Class.forName("com.mysql.jdbc.Driver");
-            co = DriverManager.getConnection("jdbc:mysql://127.0.0.1/taller_re?user=root&password=danny");
-            stm = co.createStatement();
-            re = stm.executeQuery("Select * from cliente ");
-            Cliente c;
-            while (re.next()){                 
-                if(cedula.getText() == null ? re.getString("cedulaRUC") == null : cedula.getText().equals(re.getString("cedulaRUC"))){
-                nombre.setText(re.getString("nombreCliente"));
-                direccion.setText(re.getString("direccionCliente"));
-                telefono.setText(re.getString("telefonoCliente"));
-                nombre.setEditable(false);
-                direccion.setEditable(false);
-                telefono.setEditable(false); 
-                }
-            }
-        }catch (ClassNotFoundException exc){
-            exc.printStackTrace();
-        }
-        catch(SQLException ex){
-            Logger.getLogger(consultarCliente.class.getName()).log(Level.SEVERE, null,ex);
-        }
-    } */
-    public  void Conexion() throws SQLException{
-                    
-        try{
-            Class.forName("com.mysql.jdbc.Driver");
-            co = DriverManager.getConnection("jdbc:mysql://127.0.0.1/taller_re?user=root&password=danny");
-            stm = co.createStatement();
-            re = stm.executeQuery("Select * from cliente ");
-            System.out.println("CONEXION EXITOSA");
-            Cliente c;
-            while (re.next()){                 
-                System.out.println(re.getString("nombreCliente")+"--"+re.getString("cedulaRUC"));
-                
-            }
-        }catch (ClassNotFoundException exc){
-            exc.printStackTrace();
-        }
-        catch(SQLException ex){
-            Logger.getLogger(consultarCliente.class.getName()).log(Level.SEVERE, null,ex);
-        }
-    } 
 }

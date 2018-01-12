@@ -55,7 +55,20 @@ public class ProyectoBaseDeDatos extends Application {
                 }
             }
         });
-
+        Button btna1 = new Button();
+        btna1.setText("Añadir");
+                btna1.setOnAction(new EventHandler<ActionEvent>() {
+            
+            @Override
+            public void handle(ActionEvent event) {
+                añadiCliente c = new añadiCliente();
+                try {
+                    c.start(primaryStage);
+                } catch (Exception ex) {
+                    Logger.getLogger(ProyectoBaseDeDatos.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        });
         Button btn2 = new Button();
         btn2.setText("Consultar");
                 btn2.setOnAction(new EventHandler<ActionEvent>() {
@@ -70,7 +83,20 @@ public class ProyectoBaseDeDatos extends Application {
                 }
             }
         });
-                
+        Button btna2 = new Button();
+        btna2.setText("Añadir");
+        btna2.setOnAction(new EventHandler<ActionEvent>() {
+            
+            @Override
+            public void handle(ActionEvent event) {
+                añadiBote c = new añadiBote();
+                try {
+                    c.start(primaryStage);
+                } catch (Exception ex) {
+                    Logger.getLogger(ProyectoBaseDeDatos.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        });        
         Button btn3 = new Button();
         btn3.setText("Consultar");
                 btn3.setOnAction(new EventHandler<ActionEvent>() {
@@ -85,6 +111,20 @@ public class ProyectoBaseDeDatos extends Application {
                 }
             }
         });
+        Button btna3 = new Button();
+        btna3.setText("Añadir");
+             btna3.setOnAction(new EventHandler<ActionEvent>() {
+            
+            @Override
+            public void handle(ActionEvent event) {
+                añadiServicio c = new añadiServicio();
+                try {
+                    c.start(primaryStage);
+                } catch (Exception ex) {
+                    Logger.getLogger(ProyectoBaseDeDatos.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        });        
         Button btn4 = new Button();
         btn4.setText("Consultar");
          btn4.setOnAction(new EventHandler<ActionEvent>() {
@@ -92,6 +132,20 @@ public class ProyectoBaseDeDatos extends Application {
             @Override
             public void handle(ActionEvent event) {
                 consultaGasto c = new consultaGasto();
+                try {
+                    c.start(primaryStage);
+                } catch (Exception ex) {
+                    Logger.getLogger(ProyectoBaseDeDatos.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        });
+        Button btna4 = new Button();
+        btna4.setText("Añadir");
+                btna4.setOnAction(new EventHandler<ActionEvent>() {
+            
+            @Override
+            public void handle(ActionEvent event) {
+                añadiGasto c = new añadiGasto();
                 try {
                     c.start(primaryStage);
                 } catch (Exception ex) {
@@ -113,7 +167,20 @@ public class ProyectoBaseDeDatos extends Application {
                 }
             }
         });
-        
+        Button btna5 = new Button();
+        btna5.setText("Añadir");
+                btna5.setOnAction(new EventHandler<ActionEvent>() {
+            
+            @Override
+            public void handle(ActionEvent event) {
+                añadiRepuesto c = new añadiRepuesto();
+                try {
+                    c.start(primaryStage);
+                } catch (Exception ex) {
+                    Logger.getLogger(ProyectoBaseDeDatos.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        });
         Button salir = new Button();
         salir.setText("SALIR");
         salir.setOnAction(new EventHandler<ActionEvent>() {
@@ -132,22 +199,23 @@ public class ProyectoBaseDeDatos extends Application {
         Label consultarCliente = new Label("Consultar Cliente");
         root.add(consultarCliente,0,0);
         root.add(btn1,1,0);
-                
+        root.add(btna1,2,0);        
         Label consultarBote = new Label("Consultar Bote");
         root.add(consultarBote,0,1);
         root.add(btn2,1,1);
-        
+        root.add(btna2,2,1);
         Label consultarServicio = new Label("Consultar Servicio-Factura");
         root.add(consultarServicio,0,2);
         root.add(btn3,1,2);
-        
+        root.add(btna3,2,2);
         Label consultarGasto = new Label("Consultar Gasto");
         root.add(consultarGasto,0,3);
         root.add(btn4,1,3);
-        
+        root.add(btna4,2,3);
         Label consultarRepuesto = new Label("Consultar Repuesto");
         root.add(consultarRepuesto,0,4);
         root.add(btn5,1,4);
+        root.add(btna5,2,4);
         
         consultarCliente.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override public void handle(MouseEvent e) {
