@@ -321,7 +321,7 @@ public class añadiServicio {
         root.setBottom(barrabo);
         root.setTop(barrati);
         Scene scene = new Scene(root);       
-        primaryStage.setTitle("Consulta Factura-Servicio");
+        primaryStage.setTitle("Añadir Factura-Servicio");
         primaryStage.setScene(scene);
         primaryStage.setMinWidth(550);
         primaryStage.setMinHeight(600);

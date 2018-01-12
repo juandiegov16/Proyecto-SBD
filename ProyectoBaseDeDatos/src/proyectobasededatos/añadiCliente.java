@@ -175,7 +175,7 @@ public class añadiCliente {
         root.setBottom(barra5);
         root.setTop(barra6);
         Scene scene = new Scene(root);       
-        primaryStage.setTitle("Consulta Cliente");
+        primaryStage.setTitle("Añadir Cliente");
         primaryStage.setScene(scene);
         primaryStage.setMinHeight(450);
         primaryStage.show();

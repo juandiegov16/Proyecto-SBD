@@ -197,7 +197,7 @@ public class añadiBote {
         root.setBottom(barra5);
         root.setTop(barra6);
         Scene scene = new Scene(root);       
-        primaryStage.setTitle("Consulta Bote");
+        primaryStage.setTitle("Añadir Bote");
         primaryStage.setScene(scene);
         primaryStage.setMinHeight(450);
 

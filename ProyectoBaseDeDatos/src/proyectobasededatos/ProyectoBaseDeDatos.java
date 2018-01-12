@@ -181,6 +181,35 @@ public class ProyectoBaseDeDatos extends Application {
                 }
             }
         });
+        Button btn6 = new Button();
+        btn6.setText("Consultar");
+        btn6.setOnAction(new EventHandler<ActionEvent>() {
+            
+            @Override
+            public void handle(ActionEvent event) {
+                consultaMotor c = new consultaMotor();
+                try {
+                    c.start(primaryStage);
+                } catch (Exception ex) {
+                    Logger.getLogger(ProyectoBaseDeDatos.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        });
+        Button btna6 = new Button();
+        btna6.setText("Añadir");
+                btna6.setOnAction(new EventHandler<ActionEvent>() {
+            
+            @Override
+            public void handle(ActionEvent event) {
+                añadiMotor c = new añadiMotor();
+                try {
+                    c.start(primaryStage);
+                } catch (Exception ex) {
+                    Logger.getLogger(ProyectoBaseDeDatos.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        });
+                
         Button salir = new Button();
         salir.setText("SALIR");
         salir.setOnAction(new EventHandler<ActionEvent>() {
@@ -216,6 +245,10 @@ public class ProyectoBaseDeDatos extends Application {
         root.add(consultarRepuesto,0,4);
         root.add(btn5,1,4);
         root.add(btna5,2,4);
+        Label consultarMotor = new Label("Consultar Motor");
+        root.add(consultarMotor,0,5);
+        root.add(btn6,1,5);
+        root.add(btna6,2,5);
         
         consultarCliente.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override public void handle(MouseEvent e) {
@@ -280,6 +313,19 @@ public class ProyectoBaseDeDatos extends Application {
             }
         });
         
+        consultarMotor.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override public void handle(MouseEvent e) {
+                consultarMotor.setScaleX(1.1);
+                consultarMotor.setScaleY(1.1);
+            }
+        });
+        consultarMotor.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override public void handle(MouseEvent e) {
+                consultarMotor.setScaleX(1);
+                consultarMotor.setScaleY(1);
+            }
+        });
+        
         consultarBote.setFont(new Font("Arial", 15));
         consultarBote.setWrapText(true);
         consultarBote.setTextFill(Color.BLACK);
@@ -295,20 +341,11 @@ public class ProyectoBaseDeDatos extends Application {
         consultarRepuesto.setFont(new Font("Arial", 15));
         consultarRepuesto.setWrapText(true);
         consultarRepuesto.setTextFill(Color.BLACK);
-        /*
-        Label consultarServicio = new Label("consultar Servicio");
-        root.add(consultarServicio,0,2);
-        root.add(btn3,1,2);
-        
-        Label consultarRepuesto = new Label("consultar Repuesto");
-        root.add(consultarRepuesto,0,3);
-        root.add(btn4,1,3);
-        
-        Label consultarGasto = new Label("consultar Gasto");
-        root.add(consultarGasto,0,4);
-        root.add(btn5,1,4);
-        */
-        root.add(salir, 2,6);
+        consultarMotor.setFont(new Font("Arial", 15));
+        consultarMotor.setWrapText(true);
+        consultarMotor.setTextFill(Color.BLACK);
+
+        root.add(salir, 2,7);
         
         root.setAlignment(Pos.CENTER);
         

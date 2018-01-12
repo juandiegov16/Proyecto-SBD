@@ -1,3 +1,8 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package proyectobasededatos;
 
 import Datos.Cliente;
@@ -8,7 +13,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -30,15 +34,15 @@ import javafx.stage.Stage;
  *
  * @author Usuario
  */
-public class consultaGasto extends Application{
+public class consultaMotor {
     VBox barrav ;
-    HBox barra, barra2,barra3,barra4,barra5,barrabo,barrati;
+    HBox barra, barra2,barra3,barra4,barra5,barra6,barrabo,barrati;
     ComboBox cedulas;
     Connection co;
     Statement stm;
     ResultSet re;
     BorderPane root;
-    @Override
+    
     public void start(Stage primaryStage) throws Exception {
         barrav = new VBox();
         root = new BorderPane();
@@ -82,112 +86,131 @@ public class consultaGasto extends Application{
         barrav.setStyle("-fx-background-image: url(\"/images/barco.jpg\");-fx-background-size: 550, 700;-fx-background-repeat: no-repeat;");
         
         //LABELS QUE CONTIENEN LOS CAMPOS DE LA TABLA
-        Label idgasto = new Label("Ingrese Id: ");
-        idgasto.setFont(new Font("Arial", 15));
-        idgasto.setWrapText(true);
-        idgasto.setTextFill(Color.BLACK);
-        idgasto.setOnMouseEntered(new EventHandler<MouseEvent>() {
+        Label serialmo = new Label("Ingrese el n° Serial del Motor: ");
+        serialmo.setFont(new Font("Arial", 15));
+        serialmo.setWrapText(true);
+        serialmo.setTextFill(Color.BLACK);
+        serialmo.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override public void handle(MouseEvent e) {
-                idgasto.setScaleX(1.1);
-                idgasto.setScaleY(1.1);
+                serialmo.setScaleX(1.1);
+                serialmo.setScaleY(1.1);
             }
         });
-        idgasto.setOnMouseExited(new EventHandler<MouseEvent>() {
+        serialmo.setOnMouseExited(new EventHandler<MouseEvent>() {
             @Override public void handle(MouseEvent e) {
-                idgasto.setScaleX(1);
-                idgasto.setScaleY(1);
-            }
-        });
-        
-        Label tipogasto = new Label("Ingrese Tipo de Gasto: ");
-        tipogasto.setFont(new Font("Arial", 15));
-        tipogasto.setWrapText(true);
-        tipogasto.setTextFill(Color.BLACK);
-        tipogasto.setOnMouseEntered(new EventHandler<MouseEvent>() {
-            @Override public void handle(MouseEvent e) {
-                tipogasto.setScaleX(1.1);
-                tipogasto.setScaleY(1.1);
-            }
-        });
-        tipogasto.setOnMouseExited(new EventHandler<MouseEvent>() {
-            @Override public void handle(MouseEvent e) {
-                tipogasto.setScaleX(1);
-                tipogasto.setScaleY(1);
+                serialmo.setScaleX(1);
+                serialmo.setScaleY(1);
             }
         });
         
-        Label valorgasto = new Label("Ingrese Valor del Gasto: ");
-        valorgasto.setFont(new Font("Arial", 15));
-        valorgasto.setWrapText(true);
-        valorgasto.setTextFill(Color.BLACK);
-        valorgasto.setOnMouseEntered(new EventHandler<MouseEvent>() {
+        Label marcamo = new Label("Marca Motor: ");
+        marcamo.setFont(new Font("Arial", 15));
+        marcamo.setWrapText(true);
+        marcamo.setTextFill(Color.BLACK);
+        marcamo.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override public void handle(MouseEvent e) {
-                valorgasto.setScaleX(1.1);
-                valorgasto.setScaleY(1.1);
+                marcamo.setScaleX(1.1);
+                marcamo.setScaleY(1.1);
             }
         });
-        valorgasto.setOnMouseExited(new EventHandler<MouseEvent>() {
+        marcamo.setOnMouseExited(new EventHandler<MouseEvent>() {
             @Override public void handle(MouseEvent e) {
-                valorgasto.setScaleX(1);
-                valorgasto.setScaleY(1);
-            }
-        });
-        
-        Label fecha = new Label("Ingrese Fecha: ");
-        fecha.setFont(new Font("Arial", 15));
-        fecha.setWrapText(true);
-        fecha.setTextFill(Color.BLACK);
-        fecha.setOnMouseEntered(new EventHandler<MouseEvent>() {
-            @Override public void handle(MouseEvent e) {
-                fecha.setScaleX(1.1);
-                fecha.setScaleY(1.1);
-            }
-        });
-        fecha.setOnMouseExited(new EventHandler<MouseEvent>() {
-            @Override public void handle(MouseEvent e) {
-                fecha.setScaleX(1);
-                fecha.setScaleY(1);
+                marcamo.setScaleX(1);
+                marcamo.setScaleY(1);
             }
         });
         
-        Label rucing = new Label("Ingrese RUC del Ingeniero: ");
-        rucing.setFont(new Font("Arial", 15));
-        rucing.setWrapText(true);
-        rucing.setTextFill(Color.BLACK);
-        rucing.setOnMouseEntered(new EventHandler<MouseEvent>() {
+        Label modelomo = new Label("Modelo Motor: ");
+        modelomo.setFont(new Font("Arial", 15));
+        modelomo.setWrapText(true);
+        modelomo.setTextFill(Color.BLACK);
+        modelomo.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override public void handle(MouseEvent e) {
-                rucing.setScaleX(1.1);
-                rucing.setScaleY(1.1);
+                modelomo.setScaleX(1.1);
+                modelomo.setScaleY(1.1);
             }
         });
-        rucing.setOnMouseExited(new EventHandler<MouseEvent>() {
+        modelomo.setOnMouseExited(new EventHandler<MouseEvent>() {
             @Override public void handle(MouseEvent e) {
-                rucing.setScaleX(1);
-                rucing.setScaleY(1);
+                modelomo.setScaleX(1);
+                modelomo.setScaleY(1);
             }
         });
         
-       
+        Label horaso = new Label("Horas de Operación: ");
+        horaso.setFont(new Font("Arial", 15));
+        horaso.setWrapText(true);
+        horaso.setTextFill(Color.BLACK);
+        horaso.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override public void handle(MouseEvent e) {
+                horaso.setScaleX(1.1);
+                horaso.setScaleY(1.1);
+            }
+        });
+        horaso.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override public void handle(MouseEvent e) {
+                horaso.setScaleX(1);
+                horaso.setScaleY(1);
+            }
+        });
+        
+        Label tipopro = new Label("Tipo de Propulsión: ");
+        tipopro.setFont(new Font("Arial", 15));
+        tipopro.setWrapText(true);
+        tipopro.setTextFill(Color.BLACK);
+        tipopro.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override public void handle(MouseEvent e) {
+                tipopro.setScaleX(1.1);
+                tipopro.setScaleY(1.1);
+            }
+        });
+        tipopro.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override public void handle(MouseEvent e) {
+                tipopro.setScaleX(1);
+                tipopro.setScaleY(1);
+            }
+        });
+        
+        Label numsb = new Label("Número Serial del Bote: ");
+        numsb.setFont(new Font("Arial", 15));
+        numsb.setWrapText(true);
+        numsb.setTextFill(Color.BLACK);
+        numsb.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override public void handle(MouseEvent e) {
+                numsb.setScaleX(1.1);
+                numsb.setScaleY(1.1);
+            }
+        });
+        numsb.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override public void handle(MouseEvent e) {
+                numsb.setScaleX(1);
+                numsb.setScaleY(1);
+            }
+        });
+        
         //TEXTFIELD DE CADA UNO DE LOS LABELS
-        TextField idgastot = new TextField();
-        TextField tipogastot = new TextField();
-        TextField valorgastot = new TextField();
-        TextField fechat = new TextField();
-        TextField rucingt = new TextField();
+        TextField serialmot = new TextField();
+        TextField marcamot = new TextField();
+        TextField modelomot = new TextField();
+        TextField horasot = new TextField();
+        TextField tipoprot = new TextField();
+        TextField numsbt = new TextField();
         //CONTIENEN LOS LABELS Y LOS TEXTFIELD EN ORDEN 
         barra = new HBox();
         barra2=new HBox();
         barra3=new HBox();
         barra4=new HBox();
         barra5=new HBox();
+        barra6=new HBox();
         barrati=new HBox();
         barrabo= new HBox();
         
-        barra.getChildren().addAll(idgasto,idgastot);
-        barra2.getChildren().addAll(tipogasto,tipogastot);
-        barra3.getChildren().addAll(valorgasto,valorgastot);
-        barra4.getChildren().addAll(fecha,fechat); 
-        barra5.getChildren().addAll(rucing,rucingt);
+        barra.getChildren().addAll(serialmo,serialmot);
+        barra2.getChildren().addAll(marcamo,marcamot);
+        barra3.getChildren().addAll(modelomo,modelomot);
+        barra4.getChildren().addAll(horaso,horasot);
+        barra5.getChildren().addAll(tipopro,tipoprot); 
+        barra6.getChildren().addAll(numsb,numsbt);
         
         barrabo.getChildren().addAll(salir, regresar, refrescar, consultar,modificar,añadir);
         barra.setSpacing(15);
@@ -200,7 +223,9 @@ public class consultaGasto extends Application{
         barra4.setAlignment(Pos.CENTER);
         barra5.setSpacing(15);
         barra5.setAlignment(Pos.CENTER);
-
+        barra6.setSpacing(15);
+        barra6.setAlignment(Pos.CENTER);
+        
         barrabo.setAlignment(Pos.CENTER);
         barrabo.setSpacing(15);
         cedulas= new ComboBox();
@@ -208,14 +233,14 @@ public class consultaGasto extends Application{
         //contenedor de todos hbox
         barrati.getChildren().add(titulo);
         barrati.setPrefSize(100, 100);
-        barrav.getChildren().addAll(barra,barra2,barra3,barra4,barra5);
+        barrav.getChildren().addAll(barra,barra2,barra3,barra4,barra5,barra6);
         barrav.setAlignment(Pos.CENTER);
         barrav.setSpacing(15);
         root.setCenter(barrav);
         root.setBottom(barrabo);
         root.setTop(barrati);
         Scene scene = new Scene(root);       
-        primaryStage.setTitle("Consulta Gasto");
+        primaryStage.setTitle("Consulta Motor");
         primaryStage.setScene(scene);
         primaryStage.setMinWidth(550);
         primaryStage.setMinHeight(450);
@@ -225,15 +250,16 @@ public class consultaGasto extends Application{
             
             @Override
             public void handle(ActionEvent event) {
-                idgastot.clear();
-                tipogastot.clear();
-                valorgastot.clear();
-                fechat.clear();
-                rucingt.clear();
+                serialmot.clear();
+                marcamot.clear();
+                modelomot.clear();
+                horasot.clear();
+                tipoprot.clear();
+                numsbt.clear();
                 try {
                     Conexion();
                 } catch (SQLException ex) {
-                    Logger.getLogger(consultaGasto.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(consultaRepuesto.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         });

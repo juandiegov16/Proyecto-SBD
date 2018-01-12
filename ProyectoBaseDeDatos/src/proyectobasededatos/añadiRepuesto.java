@@ -239,7 +239,7 @@ public class añadiRepuesto {
         root.setBottom(barrabo);
         root.setTop(barrati);
         Scene scene = new Scene(root);       
-        primaryStage.setTitle("Consulta Factura-Servicio");
+        primaryStage.setTitle("Añadir Repuesto");
         primaryStage.setScene(scene);
         primaryStage.setMinWidth(550);
         primaryStage.setMinHeight(450);
