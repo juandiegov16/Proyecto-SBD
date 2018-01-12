@@ -6,6 +6,7 @@
 package proyectobasededatos;
 
 import Datos.Cliente;
+import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -290,7 +291,8 @@ public class consultarBote {
                         longuitudt.clear();
                 
                         JOptionPane.showMessageDialog(null, "MODIFICADO CON EXITO");
-                        
+                    }catch(MySQLIntegrityConstraintViolationException msicve){
+                        JOptionPane.showMessageDialog(null, "Datos ya existentes");    
                     }catch(ClassNotFoundException exc){
                         exc.printStackTrace();
                     

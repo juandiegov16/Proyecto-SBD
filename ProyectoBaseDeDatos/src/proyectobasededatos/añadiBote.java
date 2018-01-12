@@ -248,7 +248,8 @@ public class añadiBote {
                         
                         
                     }catch(MySQLIntegrityConstraintViolationException msicve){
-                        JOptionPane.showMessageDialog(null, "Datos ya existentes");
+                        JOptionPane.showMessageDialog(null, "Datos ya existentes o ClienteRUC no existe");
+                        msicve.printStackTrace();
                     }catch(ClassNotFoundException exc){
                         exc.printStackTrace();
                     

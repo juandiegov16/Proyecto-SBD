@@ -43,6 +43,7 @@ public class consultaServicio extends Application{
     Statement stm;
     ResultSet re;
     BorderPane root;
+    String tempo;
     @Override
     public void start(Stage primaryStage) throws Exception {
         barrav = new VBox();
