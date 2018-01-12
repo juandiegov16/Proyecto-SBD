@@ -6,8 +6,10 @@
 package proyectobasededatos;
 
 import Datos.Cliente;
+import com.mysql.jdbc.exceptions.MySQLIntegrityConstraintViolationException;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -195,6 +197,10 @@ public class consultarCliente extends Application {
         primaryStage.setScene(scene);
         primaryStage.setMinWidth(550);
         primaryStage.setMinHeight(450);
+        cedulat.setEditable(true);
+        nombret.setEditable(false);
+        direcciont.setEditable(false);
+        telefonot.setEditable(false); 
         primaryStage.show();
         
         refrescar.setOnAction(new EventHandler<ActionEvent>() {
@@ -222,6 +228,10 @@ public class consultarCliente extends Application {
             @Override
             public void handle(ActionEvent event) {
                 try {
+                    cedulat.setEditable(true);
+                    nombret.setEditable(false);
+                    direcciont.setEditable(false);
+                    telefonot.setEditable(false); 
                     Conexion(cedulat,nombret,direcciont,telefonot);
                 } catch (SQLException ex) {
                     Logger.getLogger(consultarCliente.class.getName()).log(Level.SEVERE, null, ex);
@@ -244,7 +254,7 @@ public class consultarCliente extends Application {
                     telefonot.setEditable(true);
                     try{
                         Class.forName("com.mysql.jdbc.Driver");
-                        co = DriverManager.getConnection("jdbc:mysql://127.0.0.1/taller_re?user=root&password=danny");
+                        co = DriverManager.getConnection("jdbc:mysql://127.0.0.1/taller_re?user=root&password=root");
                         stm = co.createStatement();
                         if(nombret.getText() == null ? nom != null : !nombret.getText().equals(nom)){
                             String tempo = nombret.getText();
@@ -264,15 +274,42 @@ public class consultarCliente extends Application {
                 
             });
         
-        
-        
+        añadir.setOnAction(new EventHandler<ActionEvent>() {
+            
+            @Override
+            public void handle(ActionEvent event) {
+             
+                    String ced = cedulat.getText(), nom= nombret.getText(), dir = direcciont.getText(), tel = telefonot.getText();
+                    try{
+                        Class.forName("com.mysql.jdbc.Driver");
+                        co = DriverManager.getConnection("jdbc:mysql://127.0.0.1/taller_re?user=root&password=root");
+                        PreparedStatement stm = co.prepareStatement("INSERT into cliente(cedulaRuc,nombreCliente,direccionCliente,telefonoCliente) VALUES (?,?,?,?)");
+                        stm.setString(1,ced);
+                        stm.setString(2,nom);
+                        stm.setString(3,dir);
+                        stm.setString(4,tel);
+                        stm.executeUpdate();
+                        
+                        
+                    }catch(MySQLIntegrityConstraintViolationException msicve){
+                        JOptionPane.showMessageDialog(null, "Datos ya existentes");
+                    }catch(ClassNotFoundException exc){
+                        exc.printStackTrace();
+                    
+                    }catch(SQLException ex){
+                        Logger.getLogger(consultarCliente.class.getName()).log(Level.SEVERE, null,ex);
+                    }
+                }
+                 
+            
+        });
         
     }
     public  void Conexion(TextField cedula,TextField nombre,TextField direccion,TextField telefono) throws SQLException{
                     
         try{
             Class.forName("com.mysql.jdbc.Driver");
-            co = DriverManager.getConnection("jdbc:mysql://127.0.0.1/taller_re?user=root&password=danny");
+            co = DriverManager.getConnection("jdbc:mysql://127.0.0.1/taller_re?user=root&password=root");
             stm = co.createStatement();
             re = stm.executeQuery("Select * from cliente ");
             Cliente c;
@@ -298,7 +335,7 @@ public class consultarCliente extends Application {
                     
         try{
             Class.forName("com.mysql.jdbc.Driver");
-            co = DriverManager.getConnection("jdbc:mysql://127.0.0.1/taller_re?user=root&password=danny");
+            co = DriverManager.getConnection("jdbc:mysql://127.0.0.1/taller_re?user=root&password=root");
             stm = co.createStatement();
             re = stm.executeQuery("Select * from cliente ");
             System.out.println("CONEXION EXITOSA");
