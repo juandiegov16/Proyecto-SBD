@@ -159,7 +159,7 @@ public class consultarCliente extends Application {
             }
         });
         Button añadir = new Button();
-        añadir.setText("AGREGAR");
+        añadir.setText("ACEPTAR");
         
         TextField cedulat = new TextField();
         TextField nombret = new TextField();
@@ -252,22 +252,7 @@ public class consultarCliente extends Application {
                     nombret.setEditable(true);
                     direcciont.setEditable(true);
                     telefonot.setEditable(true);
-                    try{
-                        Class.forName("com.mysql.jdbc.Driver");
-                        co = DriverManager.getConnection("jdbc:mysql://127.0.0.1/taller_re?user=root&password=root");
-                        stm = co.createStatement();
-                        if(nombret.getText() == null ? nom != null : !nombret.getText().equals(nom)){
-                            String tempo = nombret.getText();
-                            re = stm.executeQuery("update cliente set cedulaRUC = tempo where cedulaRUC = cedulat.getText()");
-                        
-                        
-                        }
-                        re = stm.executeQuery("Select * from cliente ");
-                    }catch(ClassNotFoundException exc){
-                        exc.printStackTrace();
-                    }catch(SQLException ex){
-                        Logger.getLogger(consultarCliente.class.getName()).log(Level.SEVERE, null,ex);
-                    }
+                    
                 }
                 } 
             
@@ -283,13 +268,18 @@ public class consultarCliente extends Application {
                     try{
                         Class.forName("com.mysql.jdbc.Driver");
                         co = DriverManager.getConnection("jdbc:mysql://127.0.0.1/taller_re?user=root&password=root");
-                        PreparedStatement stm = co.prepareStatement("INSERT into cliente(cedulaRuc,nombreCliente,direccionCliente,telefonoCliente) VALUES (?,?,?,?)");
+                        PreparedStatement stm = co.prepareStatement("Update cliente set cedulaRuc = ?, nombrecliente = ?,direccionCliente = ? ,telefonoCliente = ? where cedulaRuc = ?");
                         stm.setString(1,ced);
                         stm.setString(2,nom);
                         stm.setString(3,dir);
                         stm.setString(4,tel);
+                        stm.setString(5,ced);
                         stm.executeUpdate();
-                        
+                        cedulat.clear();
+                        telefonot.clear();
+                        direcciont.clear();
+                        nombret.clear();
+                        JOptionPane.showMessageDialog(null, "MODIFICADO CON EXITO");
                         
                     }catch(MySQLIntegrityConstraintViolationException msicve){
                         JOptionPane.showMessageDialog(null, "Datos ya existentes");

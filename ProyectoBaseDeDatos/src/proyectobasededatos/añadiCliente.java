@@ -5,7 +5,10 @@
  */
 package proyectobasededatos;
 
+import com.mysql.jdbc.exceptions.MySQLIntegrityConstraintViolationException;
 import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -27,6 +30,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -199,6 +203,35 @@ public class añadiCliente {
                //AQUI DEBES PONER LA CONEXION Y ENVIAR LOS DATOS DE LOS CUADROS DE TEXTO AL MYSQL CON INSERT
                 
             }
+        });
+        añadir.setOnAction(new EventHandler<ActionEvent>() {
+            
+            @Override
+            public void handle(ActionEvent event) {
+             
+                    String ced = cedulat.getText(), nom= nombret.getText(), dir = direcciont.getText(), tel = telefonot.getText();
+                    try{
+                        Class.forName("com.mysql.jdbc.Driver");
+                        co = DriverManager.getConnection("jdbc:mysql://127.0.0.1/taller_re?user=root&password=root");
+                        PreparedStatement stm = co.prepareStatement("INSERT into cliente(cedulaRuc,nombreCliente,direccionCliente,telefonoCliente) VALUES (?,?,?,?)");
+                        stm.setString(1,ced);
+                        stm.setString(2,nom);
+                        stm.setString(3,dir);
+                        stm.setString(4,tel);
+                        stm.executeUpdate();
+                        
+                        
+                    }catch(MySQLIntegrityConstraintViolationException msicve){
+                        JOptionPane.showMessageDialog(null, "Datos ya existentes");
+                    }catch(ClassNotFoundException exc){
+                        exc.printStackTrace();
+                    
+                    }catch(SQLException ex){
+                        Logger.getLogger(consultarCliente.class.getName()).log(Level.SEVERE, null,ex);
+                    }
+                }
+                 
+            
         });
     }
 }
