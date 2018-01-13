@@ -38,7 +38,7 @@ import javax.swing.JOptionPane;
  * @author Usuario
  */
 public class añadiBote {
-      VBox barrav ;
+    VBox barrav ;
     HBox barra, barra2,barra3,barra4,barra5,barra6,barra7;
     ComboBox cedulas;
     Connection co;

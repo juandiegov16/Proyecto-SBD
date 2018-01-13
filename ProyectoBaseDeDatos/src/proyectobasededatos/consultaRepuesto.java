@@ -6,8 +6,10 @@
 package proyectobasededatos;
 
 import Datos.Cliente;
+import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -29,6 +31,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -42,6 +45,7 @@ public class consultaRepuesto {
     Statement stm;
     ResultSet re;
     BorderPane root;
+    String tempo;
     
     public void start(Stage primaryStage) throws Exception {
         barrav = new VBox();
@@ -244,6 +248,12 @@ public class consultaRepuesto {
         primaryStage.setScene(scene);
         primaryStage.setMinWidth(550);
         primaryStage.setMinHeight(450);
+        serialret.setEditable(true);
+        cantidadt.setEditable(false);
+        descripciont.setEditable(false);
+        valorrept.setEditable(false);
+        frecuenciat.setEditable(false);
+        idfacturat.setEditable(false);
         primaryStage.show();
         
         refrescar.setOnAction(new EventHandler<ActionEvent>() {
@@ -263,37 +273,104 @@ public class consultaRepuesto {
                 }
             }
         });
-    }
-   /*     consultar.setOnAction(new EventHandler<ActionEvent>() {
+    
+    consultar.setOnAction(new EventHandler<ActionEvent>() {
             
             @Override
             public void handle(ActionEvent event) {
                 try {
-                    Conexion(cedulat,nombret,direcciont,telefonot);
+                    serialret.setEditable(true);
+                    cantidadt.setEditable(false);
+                    descripciont.setEditable(false);
+                    valorrept.setEditable(false);
+                    frecuenciat.setEditable(false);
+                    idfacturat.setEditable(false);
+                    Conexion(serialret,cantidadt,descripciont,valorrept,frecuenciat,idfacturat);
                 } catch (SQLException ex) {
                     Logger.getLogger(consultarCliente.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         });
-        
+        modificar.setOnAction(new EventHandler<ActionEvent>() {
+            
+            @Override
+            public void handle(ActionEvent event) {
+                int confirmado = JOptionPane.showConfirmDialog(null,"¿Deseas modificar la información..?");
+                String serial = serialret.getText(), cant= cantidadt.getText(), desc = descripciont.getText(), valor = valorrept.getText(),frec = frecuenciat.getText(),fact = idfacturat.getText();
+                tempo = serialret.getText();
+                if (JOptionPane.OK_OPTION == confirmado){
+                    
+                    serialret.setEditable(true);
+                    cantidadt.setEditable(true);
+                    descripciont.setEditable(true);
+                    valorrept.setEditable(true);
+                    frecuenciat.setEditable(true);
+                    idfacturat.setEditable(true);
+                }
+                } 
+            
+                
+            });
+        añadir.setOnAction(new EventHandler<ActionEvent>() {
+            
+            @Override
+            public void handle(ActionEvent event) {
+             
+                    String serial = serialret.getText(), cant= cantidadt.getText(), desc = descripciont.getText(), valor = valorrept.getText(),frec = frecuenciat.getText(),fact = idfacturat.getText();
+                    try{
+                        Class.forName("com.mysql.jdbc.Driver");
+                        co = DriverManager.getConnection("jdbc:mysql://127.0.0.1/taller_re?user=root&password=root");
+                        PreparedStatement stm = co.prepareStatement("Update repuesto set numSR = ?, cantidad = ?,descripcion = ? ,valorRep = ?,frecuenciaUso = ?,numFactura = ?, where numSB = ?");
+                        stm.setString(1,serial);
+                        stm.setString(2,cant);
+                        stm.setString(3,desc);
+                        stm.setString(4,valor);
+                        stm.setString(5,frec);
+                        stm.setString(6,fact);
+                        stm.setString(7,tempo);
+                        stm.executeUpdate();
+                        serialret.clear();
+                        cantidadt.clear();
+                        descripciont.clear();
+                        valorrept.clear();
+                        frecuenciat.clear();
+                        idfacturat.clear();
+                
+                        JOptionPane.showMessageDialog(null, "MODIFICADO CON EXITO");
+                    }catch(MySQLIntegrityConstraintViolationException msicve){
+                        JOptionPane.showMessageDialog(null, "Datos ya existentes");    
+                    }catch(ClassNotFoundException exc){
+                        exc.printStackTrace();
+                    
+                    }catch(SQLException ex){
+                        Logger.getLogger(consultarCliente.class.getName()).log(Level.SEVERE, null,ex);
+                    }
+                }
+                 
+            
+        });
     }
 
-    public  void Conexion(TextField cedula,TextField nombre,TextField direccion,TextField telefono) throws SQLException{
+    public  void Conexion(TextField serial,TextField cantidad,TextField descripcion,TextField valorRep, TextField frecUso, TextField factura) throws SQLException{
                     
         try{
             Class.forName("com.mysql.jdbc.Driver");
-            co = DriverManager.getConnection("jdbc:mysql://127.0.0.1/taller_re?user=root&password=danny");
+            co = DriverManager.getConnection("jdbc:mysql://127.0.0.1/taller_re?user=root&password=root");
             stm = co.createStatement();
-            re = stm.executeQuery("Select * from cliente ");
+            re = stm.executeQuery("Select * from repuesto ");
             Cliente c;
             while (re.next()){                 
-                if(cedula.getText() == null ? re.getString("cedulaRUC") == null : cedula.getText().equals(re.getString("cedulaRUC"))){
-                nombre.setText(re.getString("nombreCliente"));
-                direccion.setText(re.getString("direccionCliente"));
-                telefono.setText(re.getString("telefonoCliente"));
-                nombre.setEditable(false);
-                direccion.setEditable(false);
-                telefono.setEditable(false); 
+                if(serial.getText() == null ? re.getString("numSR") == null : serial.getText().equals(re.getString("numSR"))){
+                cantidad.setText(re.getString("cantidad"));
+                descripcion.setText(re.getString("descripcion"));
+                valorRep.setText(re.getString("valorRep"));
+                frecUso.setText(re.getString("frecuenciaUso"));
+                factura.setText(re.getString("numFactura"));
+                cantidad.setEditable(false);
+                descripcion.setEditable(false);
+                valorRep.setEditable(false);
+                frecUso.setEditable(false);
+                factura.setEditable(false);
                 }
             }
         }catch (ClassNotFoundException exc){
@@ -302,18 +379,18 @@ public class consultaRepuesto {
         catch(SQLException ex){
             Logger.getLogger(consultarCliente.class.getName()).log(Level.SEVERE, null,ex);
         }
-    } */
+    } 
     public  void Conexion() throws SQLException{
                     
         try{
             Class.forName("com.mysql.jdbc.Driver");
-            co = DriverManager.getConnection("jdbc:mysql://127.0.0.1/taller_re?user=root&password=danny");
+            co = DriverManager.getConnection("jdbc:mysql://127.0.0.1/taller_re?user=root&password=root");
             stm = co.createStatement();
-            re = stm.executeQuery("Select * from cliente ");
+            re = stm.executeQuery("Select * from repuesto ");
             System.out.println("CONEXION EXITOSA");
             Cliente c;
             while (re.next()){                 
-                System.out.println(re.getString("nombreCliente")+"--"+re.getString("cedulaRUC"));
+                System.out.println(re.getString("numSR")+"--"+re.getString("cantidad")+"--"+re.getString("descripcion")+"--"+re.getString("valorRep")+"--"+re.getString("frecuenciaUso")+"--"+re.getString("numFactura"));
                 
             }
         }catch (ClassNotFoundException exc){
