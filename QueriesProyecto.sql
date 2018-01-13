@@ -33,3 +33,50 @@ FROM
     motor m
         LEFT JOIN
     bote b ON b.numSB = m.numSB;
+    
+#Mostrar botes por cliente
+SELECT 
+    c.nombreCliente, b.numSB
+FROM
+    cliente c
+        INNER JOIN
+    bote b ON c.cedulaRUC = b.cedulaRUC
+GROUP BY c.cedulaRUC;
+
+#Mostrar motores por bote
+SELECT 
+    b.numSB, m.numSM
+FROM
+    bote b
+        INNER JOIN
+    motor m ON b.numSB = m.numSB
+GROUP BY b.numSB;
+
+#Mostrar repuestos agotados
+SELECT 
+    numSR, descripcion, valorRep
+FROM
+    repuesto
+WHERE
+    cantidad = 0;
+    
+#Mostrar datos de factura, con el nombre del cliente
+SELECT 
+    f.fecha,
+    f.numFactura,
+    f.tipoServicio,
+    f.descripcion,
+    f.valorFactura,
+    f.formaPago,
+    c.nombreCliente
+FROM
+    facturaservicio f
+        INNER JOIN
+    cliente c ON c.cedulaRUC = f.cedulaRUC;
+    
+#Mostrar botes ordenados por tamaño
+SELECT 
+    numSB, marcaBote, modeloBote, eslora
+FROM
+    bote
+ORDER BY eslora DESC;    
