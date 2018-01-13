@@ -5,7 +5,11 @@
  */
 package proyectobasededatos;
 
+import Datos.Cliente;
+import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException;
 import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -27,6 +31,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -344,5 +349,109 @@ public class añadiServicio {
                
             }
         });
+        añadir.setOnAction(new EventHandler<ActionEvent>() {
+            
+            @Override
+            public void handle(ActionEvent event) {
+             
+                    String fecha = fechat.getText(), numfact= facturat.getText(), tipoServ = serviciot.getText(), descr = descripciont.getText(),valor = valort.getText(),formPag = formapagot.getText(),numSR = numsrt.getText(),RUCIng = rucingt.getText(),numOrd = numordent.getText(),cedula = cedularuct.getText();
+                    try{
+                        Class.forName("com.mysql.jdbc.Driver");
+                        co = DriverManager.getConnection("jdbc:mysql://127.0.0.1/taller_re?user=root&password=root");
+                        PreparedStatement stm = co.prepareStatement("Insert Into facturaservicio(fecha,numFactura,tipoServicio,descripcion,valorFactura,formaPago,numSR,RUCIng,numOrden,cedulaRuc) Values (?,?,?,?,?,?,?,?,?,?)");
+                        stm.setString(1,fecha);
+                        stm.setString(2,numfact);
+                        stm.setString(3,tipoServ);
+                        stm.setString(4,descr);
+                        stm.setString(5,valor);
+                        stm.setString(6,formPag);
+                        stm.setString(7,numSR);
+                        stm.setString(8,RUCIng);
+                        stm.setString(9,numOrd);
+                        stm.setString(10,cedula);
+                        stm.executeUpdate();
+                        facturat.clear();
+                        fechat.clear();
+                        serviciot.clear();
+                        descripciont.clear();
+                        valort.clear();
+                        formapagot.clear();
+                        numsrt.clear();
+                        rucingt.clear();
+                        numordent.clear();
+                        cedularuct.clear();
+                
+                        JOptionPane.showMessageDialog(null, "MODIFICADO CON EXITO");
+                    }catch(MySQLIntegrityConstraintViolationException msicve){
+                        JOptionPane.showMessageDialog(null, "Datos ya existentes");    
+                    }catch(ClassNotFoundException exc){
+                        exc.printStackTrace();
+                    
+                    }catch(SQLException ex){
+                        Logger.getLogger(consultarCliente.class.getName()).log(Level.SEVERE, null,ex);
+                    }
+                }
+                 
+            
+        });
     }
+
+    public  void Conexion(TextField fecha,TextField numFact,TextField tipoServ,TextField descr, TextField valorFact, TextField formPag, TextField numSR,TextField rucIng,TextField numOrd,TextField cedula) throws SQLException{
+                    
+        try{
+            Class.forName("com.mysql.jdbc.Driver");
+            co = DriverManager.getConnection("jdbc:mysql://127.0.0.1/taller_re?user=root&password=root");
+            stm = co.createStatement();
+            re = stm.executeQuery("Select * from facturaservicio ");
+            Cliente c;
+            while (re.next()){                 
+                if(numFact.getText() == null ? re.getString("numFactura") == null : fecha.getText().equals(re.getString("numFactura"))){
+                fecha.setText(re.getString("fecha"));
+                tipoServ.setText(re.getString("tipoServicio"));
+                descr.setText(re.getString("descripcion"));
+                valorFact.setText(re.getString("valorFactura"));
+                formPag.setText(re.getString("formaPago"));
+                numSR.setText(re.getString("numSR"));
+                rucIng.setText(re.getString("RUCIng"));
+                numOrd.setText(re.getString("numOrden"));
+                cedula.setText(re.getString("cedulaRUC"));
+                
+                numFact.setEditable(false);
+                tipoServ.setEditable(false);
+                descr.setEditable(false);
+                valorFact.setEditable(false);
+                formPag.setEditable(false);
+                numSR.setEditable(false);
+                rucIng.setEditable(false);
+                numOrd.setEditable(false);
+                cedula.setEditable(false);
+                }
+            }
+        }catch (ClassNotFoundException exc){
+            exc.printStackTrace();
+        }
+        catch(SQLException ex){
+            Logger.getLogger(consultarCliente.class.getName()).log(Level.SEVERE, null,ex);
+        }
+    } 
+    public  void Conexion() throws SQLException{
+                    
+        try{
+            Class.forName("com.mysql.jdbc.Driver");
+            co = DriverManager.getConnection("jdbc:mysql://127.0.0.1/taller_re?user=root&password=root");
+            stm = co.createStatement();
+            re = stm.executeQuery("Select * from facturaservicio ");
+            System.out.println("CONEXION EXITOSA");
+            Cliente c;
+            while (re.next()){                 
+                System.out.println(re.getString("numFactura")+"--"+re.getString("fecha"));
+                
+            }
+        }catch (ClassNotFoundException exc){
+            exc.printStackTrace();
+        }
+        catch(SQLException ex){
+            Logger.getLogger(consultaGasto.class.getName()).log(Level.SEVERE, null,ex);
+        }
+    } 
 }
