@@ -54,7 +54,7 @@ public class añadirOrden {
         Button refrescar = new Button();
         refrescar.setText("LIMPIAR");
         Button añadir = new Button();
-        añadir.setText("ACEPTAR");
+        añadir.setText("AÑADIR");
         Button modificar = new Button();
         modificar.setText("MODIFICAR");
         Button titulo=new Button();

@@ -314,7 +314,7 @@ public class consultaMotor {
                     try{
                         Class.forName("com.mysql.jdbc.Driver");
                         co = DriverManager.getConnection("jdbc:mysql://127.0.0.1/taller_re?user=root&password=root");
-                        PreparedStatement stm = co.prepareStatement("Update motor set numSM = ?, marcaMotor = ?,modeloMotor = ? ,horasOperacion = ?,tipoPropulsion = ?,numSB = ?, where numSB = ?");
+                        PreparedStatement stm = co.prepareStatement("Update motor set numSM = ?, marcaMotor = ?,modeloMotor = ? ,horasOperacion = ?,tipoPropulsion = ?,numSB = ? where numSB = ?");
                         stm.setString(1,serial);
                         stm.setString(2,marca);
                         stm.setString(3,model);
