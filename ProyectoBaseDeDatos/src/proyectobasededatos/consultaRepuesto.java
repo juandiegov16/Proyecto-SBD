@@ -54,7 +54,7 @@ public class consultaRepuesto {
         Button refrescar = new Button();
         refrescar.setText("LIMPIAR");
         Button añadir = new Button();
-        añadir.setText("AGREGAR");
+        añadir.setText("ACEPTAR");
         Button modificar = new Button();
         modificar.setText("MODIFICAR");
         Button titulo=new Button();

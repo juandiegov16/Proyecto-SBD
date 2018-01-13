@@ -35,9 +35,9 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author Usuario
+ * @author Harold
  */
-public class consultaMotor {
+public class ConsultarOrden {
     VBox barrav ;
     HBox barra, barra2,barra3,barra4,barra5,barra6,barrabo,barrati;
     ComboBox cedulas;
@@ -90,115 +90,46 @@ public class consultaMotor {
         barrav.setStyle("-fx-background-image: url(\"/images/barco.jpg\");-fx-background-size: 550, 700;-fx-background-repeat: no-repeat;");
         
         //LABELS QUE CONTIENEN LOS CAMPOS DE LA TABLA
-        Label serialmo = new Label("Ingrese el n° Serial del Motor: ");
-        serialmo.setFont(new Font("Arial", 15));
-        serialmo.setWrapText(true);
-        serialmo.setTextFill(Color.BLACK);
-        serialmo.setOnMouseEntered(new EventHandler<MouseEvent>() {
+        Label numOrd = new Label("Ingrese el n° De Orden: ");
+        numOrd.setFont(new Font("Arial", 15));
+        numOrd.setWrapText(true);
+        numOrd.setTextFill(Color.BLACK);
+        numOrd.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override public void handle(MouseEvent e) {
-                serialmo.setScaleX(1.1);
-                serialmo.setScaleY(1.1);
+                numOrd.setScaleX(1.1);
+                numOrd.setScaleY(1.1);
             }
         });
-        serialmo.setOnMouseExited(new EventHandler<MouseEvent>() {
+        numOrd.setOnMouseExited(new EventHandler<MouseEvent>() {
             @Override public void handle(MouseEvent e) {
-                serialmo.setScaleX(1);
-                serialmo.setScaleY(1);
-            }
-        });
-        
-        Label marcamo = new Label("Marca Motor: ");
-        marcamo.setFont(new Font("Arial", 15));
-        marcamo.setWrapText(true);
-        marcamo.setTextFill(Color.BLACK);
-        marcamo.setOnMouseEntered(new EventHandler<MouseEvent>() {
-            @Override public void handle(MouseEvent e) {
-                marcamo.setScaleX(1.1);
-                marcamo.setScaleY(1.1);
-            }
-        });
-        marcamo.setOnMouseExited(new EventHandler<MouseEvent>() {
-            @Override public void handle(MouseEvent e) {
-                marcamo.setScaleX(1);
-                marcamo.setScaleY(1);
+                numOrd.setScaleX(1);
+                numOrd.setScaleY(1);
             }
         });
         
-        Label modelomo = new Label("Modelo Motor: ");
-        modelomo.setFont(new Font("Arial", 15));
-        modelomo.setWrapText(true);
-        modelomo.setTextFill(Color.BLACK);
-        modelomo.setOnMouseEntered(new EventHandler<MouseEvent>() {
+        Label fecha = new Label("Fecha: ");
+        fecha.setFont(new Font("Arial", 15));
+        fecha.setWrapText(true);
+        fecha.setTextFill(Color.BLACK);
+        fecha.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override public void handle(MouseEvent e) {
-                modelomo.setScaleX(1.1);
-                modelomo.setScaleY(1.1);
+                fecha.setScaleX(1.1);
+                fecha.setScaleY(1.1);
             }
         });
-        modelomo.setOnMouseExited(new EventHandler<MouseEvent>() {
+        fecha.setOnMouseExited(new EventHandler<MouseEvent>() {
             @Override public void handle(MouseEvent e) {
-                modelomo.setScaleX(1);
-                modelomo.setScaleY(1);
-            }
-        });
-        
-        Label horaso = new Label("Horas de Operación: ");
-        horaso.setFont(new Font("Arial", 15));
-        horaso.setWrapText(true);
-        horaso.setTextFill(Color.BLACK);
-        horaso.setOnMouseEntered(new EventHandler<MouseEvent>() {
-            @Override public void handle(MouseEvent e) {
-                horaso.setScaleX(1.1);
-                horaso.setScaleY(1.1);
-            }
-        });
-        horaso.setOnMouseExited(new EventHandler<MouseEvent>() {
-            @Override public void handle(MouseEvent e) {
-                horaso.setScaleX(1);
-                horaso.setScaleY(1);
+                fecha.setScaleX(1);
+                fecha.setScaleY(1);
             }
         });
         
-        Label tipopro = new Label("Tipo de Propulsión: ");
-        tipopro.setFont(new Font("Arial", 15));
-        tipopro.setWrapText(true);
-        tipopro.setTextFill(Color.BLACK);
-        tipopro.setOnMouseEntered(new EventHandler<MouseEvent>() {
-            @Override public void handle(MouseEvent e) {
-                tipopro.setScaleX(1.1);
-                tipopro.setScaleY(1.1);
-            }
-        });
-        tipopro.setOnMouseExited(new EventHandler<MouseEvent>() {
-            @Override public void handle(MouseEvent e) {
-                tipopro.setScaleX(1);
-                tipopro.setScaleY(1);
-            }
-        });
         
-        Label numsb = new Label("Número Serial del Bote: ");
-        numsb.setFont(new Font("Arial", 15));
-        numsb.setWrapText(true);
-        numsb.setTextFill(Color.BLACK);
-        numsb.setOnMouseEntered(new EventHandler<MouseEvent>() {
-            @Override public void handle(MouseEvent e) {
-                numsb.setScaleX(1.1);
-                numsb.setScaleY(1.1);
-            }
-        });
-        numsb.setOnMouseExited(new EventHandler<MouseEvent>() {
-            @Override public void handle(MouseEvent e) {
-                numsb.setScaleX(1);
-                numsb.setScaleY(1);
-            }
-        });
         
         //TEXTFIELD DE CADA UNO DE LOS LABELS
-        TextField serialmot = new TextField();
-        TextField marcamot = new TextField();
-        TextField modelomot = new TextField();
-        TextField horasot = new TextField();
-        TextField tipoprot = new TextField();
-        TextField numsbt = new TextField();
+        TextField numOrden = new TextField();
+        TextField fechaorden = new TextField();
+        
         //CONTIENEN LOS LABELS Y LOS TEXTFIELD EN ORDEN 
         barra = new HBox();
         barra2=new HBox();
@@ -209,12 +140,9 @@ public class consultaMotor {
         barrati=new HBox();
         barrabo= new HBox();
         
-        barra.getChildren().addAll(serialmo,serialmot);
-        barra2.getChildren().addAll(marcamo,marcamot);
-        barra3.getChildren().addAll(modelomo,modelomot);
-        barra4.getChildren().addAll(horaso,horasot);
-        barra5.getChildren().addAll(tipopro,tipoprot); 
-        barra6.getChildren().addAll(numsb,numsbt);
+        barra.getChildren().addAll(numOrd,numOrden);
+        barra2.getChildren().addAll(fecha,fechaorden);
+        
         
         barrabo.getChildren().addAll(salir, regresar, refrescar, consultar,modificar,añadir);
         barra.setSpacing(15);
@@ -244,7 +172,7 @@ public class consultaMotor {
         root.setBottom(barrabo);
         root.setTop(barrati);
         Scene scene = new Scene(root);       
-        primaryStage.setTitle("Consulta Motor");
+        primaryStage.setTitle("Consulta Orden");
         primaryStage.setScene(scene);
         primaryStage.setMinWidth(550);
         primaryStage.setMinHeight(450);
@@ -254,12 +182,9 @@ public class consultaMotor {
             
             @Override
             public void handle(ActionEvent event) {
-                serialmot.clear();
-                marcamot.clear();
-                modelomot.clear();
-                horasot.clear();
-                tipoprot.clear();
-                numsbt.clear();
+                numOrden.clear();
+                fechaorden.clear();
+                
                 try {
                     Conexion();
                 } catch (SQLException ex) {
@@ -273,13 +198,10 @@ public class consultaMotor {
             @Override
             public void handle(ActionEvent event) {
                 try {
-                    serialmot.setEditable(true);
-                    marcamot.setEditable(false);
-                    modelomot.setEditable(false);
-                    horasot.setEditable(false);
-                    tipoprot.setEditable(false);
-                    numsbt.setEditable(false);
-                    Conexion(serialmot,marcamot,modelomot,horasot,tipoprot,numsbt);
+                    numOrden.setEditable(true);
+                    fechaorden.setEditable(false);
+                    
+                    Conexion(numOrden,fechaorden);
                 } catch (SQLException ex) {
                     Logger.getLogger(consultarCliente.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -290,16 +212,13 @@ public class consultaMotor {
             @Override
             public void handle(ActionEvent event) {
                 int confirmado = JOptionPane.showConfirmDialog(null,"¿Deseas modificar la información..?");
-                String serial = serialmot.getText(), marca= marcamot.getText(), model = modelomot.getText(), hora = horasot.getText(),tipo = tipoprot.getText(),num = numsbt.getText();
-                tempo = serialmot.getText();
+                String serial = numOrden.getText(), marca= fechaorden.getText();
+                tempo = numOrden.getText();
                 if (JOptionPane.OK_OPTION == confirmado){
                     
-                    serialmot.setEditable(true);
-                    marcamot.setEditable(true);
-                    modelomot.setEditable(true);
-                    horasot.setEditable(true);
-                    tipoprot.setEditable(true);
-                    numsbt.setEditable(true);
+                    numOrden.setEditable(true);
+                    fechaorden.setEditable(true);
+                    
                 }
                 } 
             
@@ -310,25 +229,18 @@ public class consultaMotor {
             @Override
             public void handle(ActionEvent event) {
              
-                    String serial = serialmot.getText(), marca= marcamot.getText(), model = modelomot.getText(), hora = horasot.getText(),tipo = tipoprot.getText(),num = numsbt.getText();
+                    String serial = numOrden.getText(), marca= fechaorden.getText();
                     try{
                         Class.forName("com.mysql.jdbc.Driver");
                         co = DriverManager.getConnection("jdbc:mysql://127.0.0.1/taller_re?user=root&password=root");
-                        PreparedStatement stm = co.prepareStatement("Update motor set numSM = ?, marcaMotor = ?,modeloMotor = ? ,horasOperacion = ?,tipoPropulsion = ?,numSB = ?, where numSB = ?");
+                        PreparedStatement stm = co.prepareStatement("Update ordentrabajo set numOrden = ?, fechaOrden = ? where numOrden = ?");
                         stm.setString(1,serial);
-                        stm.setString(2,marca);
-                        stm.setString(3,model);
-                        stm.setString(4,hora);
-                        stm.setString(5,tipo);
-                        stm.setString(6,num);
-                        stm.setString(7,tempo);
+                        stm.setString(2,marca);              
+                        stm.setString(3,tempo);
                         stm.executeUpdate();
-                        serialmot.clear();
-                        marcamot.clear();
-                        modelomot.clear();
-                        horasot.clear();
-                        tipoprot.clear();
-                        numsbt.clear();
+                        numOrden.clear();
+                        fechaorden.clear();
+
                 
                         JOptionPane.showMessageDialog(null, "MODIFICADO CON EXITO");
                     }catch(MySQLIntegrityConstraintViolationException msicve){
@@ -345,26 +257,20 @@ public class consultaMotor {
         });
     }
 
-    public  void Conexion(TextField serial,TextField cantidad,TextField descripcion,TextField valorRep, TextField frecUso, TextField factura) throws SQLException{
+    public  void Conexion(TextField serial,TextField fecha) throws SQLException{
                     
         try{
             Class.forName("com.mysql.jdbc.Driver");
             co = DriverManager.getConnection("jdbc:mysql://127.0.0.1/taller_re?user=root&password=root");
             stm = co.createStatement();
-            re = stm.executeQuery("Select * from motor ");
+            re = stm.executeQuery("Select * from ordentrabajo ");
             Cliente c;
             while (re.next()){                 
-                if(serial.getText() == null ? re.getString("numSM") == null : serial.getText().equals(re.getString("numSM"))){
-                cantidad.setText(re.getString("marcaMotor"));
-                descripcion.setText(re.getString("modeloMotor"));
-                valorRep.setText(re.getString("horasOperacion"));
-                frecUso.setText(re.getString("tipoPropulsion"));
-                factura.setText(re.getString("numSB"));
-                cantidad.setEditable(false);
-                descripcion.setEditable(false);
-                valorRep.setEditable(false);
-                frecUso.setEditable(false);
-                factura.setEditable(false);
+                if(serial.getText() == null ? re.getString("numOrden") == null : serial.getText().equals(re.getString("numOrden"))){
+                fecha.setText(re.getString("fechaOrden"));
+                
+                fecha.setEditable(false);
+                
                 }
             }
         }catch (ClassNotFoundException exc){
@@ -380,11 +286,11 @@ public class consultaMotor {
             Class.forName("com.mysql.jdbc.Driver");
             co = DriverManager.getConnection("jdbc:mysql://127.0.0.1/taller_re?user=root&password=root");
             stm = co.createStatement();
-            re = stm.executeQuery("Select * from motor ");
+            re = stm.executeQuery("Select * from ordentrabajo");
             System.out.println("CONEXION EXITOSA");
             Cliente c;
             while (re.next()){                 
-                System.out.println(re.getString("numSM")+"--"+re.getString("marcaMotor")+"--"+re.getString("modeloMotor")+"--"+re.getString("horasOperacion")+"--"+re.getString("tipoPropulsion")+"--"+re.getString("numSB"));
+                System.out.println(re.getString("numOrden")+"--"+re.getString("fechaOrden"));
                 
             }
         }catch (ClassNotFoundException exc){
