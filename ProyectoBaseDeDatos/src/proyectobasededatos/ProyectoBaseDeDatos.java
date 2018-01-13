@@ -209,7 +209,34 @@ public class ProyectoBaseDeDatos extends Application {
                 }
             }
         });
-                
+        Button btn7 = new Button();
+        btn7.setText("Consultar");
+        btn7.setOnAction(new EventHandler<ActionEvent>() {
+            
+            @Override
+            public void handle(ActionEvent event) {
+                consultarIngeniero c = new consultarIngeniero();
+                try {
+                    c.start(primaryStage);
+                } catch (Exception ex) {
+                    Logger.getLogger(ProyectoBaseDeDatos.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        });
+        Button btna7 = new Button();
+        btna7.setText("Añadir");
+                btna7.setOnAction(new EventHandler<ActionEvent>() {
+            
+            @Override
+            public void handle(ActionEvent event) {
+                añadirIngeniero c = new añadirIngeniero();
+                try {
+                    c.start(primaryStage);
+                } catch (Exception ex) {
+                    Logger.getLogger(ProyectoBaseDeDatos.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        });        
         Button salir = new Button();
         salir.setText("SALIR");
         salir.setOnAction(new EventHandler<ActionEvent>() {
@@ -249,6 +276,10 @@ public class ProyectoBaseDeDatos extends Application {
         root.add(consultarMotor,0,5);
         root.add(btn6,1,5);
         root.add(btna6,2,5);
+        Label consultarIngeniero = new Label("Consultar Ingeniero");
+        root.add(consultarIngeniero ,0,6);
+        root.add(btn7,1,6);
+        root.add(btna7,2,6);
         
         consultarCliente.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override public void handle(MouseEvent e) {
@@ -325,6 +356,18 @@ public class ProyectoBaseDeDatos extends Application {
                 consultarMotor.setScaleY(1);
             }
         });
+        consultarIngeniero.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override public void handle(MouseEvent e) {
+                consultarIngeniero.setScaleX(1.1);
+                consultarIngeniero.setScaleY(1.1);
+            }
+        });
+        consultarIngeniero.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override public void handle(MouseEvent e) {
+                consultarIngeniero.setScaleX(1);
+                consultarIngeniero.setScaleY(1);
+            }
+        });
         
         consultarBote.setFont(new Font("Arial", 15));
         consultarBote.setWrapText(true);
@@ -344,6 +387,9 @@ public class ProyectoBaseDeDatos extends Application {
         consultarMotor.setFont(new Font("Arial", 15));
         consultarMotor.setWrapText(true);
         consultarMotor.setTextFill(Color.BLACK);
+        consultarIngeniero.setFont(new Font("Arial", 15));
+        consultarIngeniero.setWrapText(true);
+        consultarIngeniero.setTextFill(Color.BLACK);
 
         root.add(salir, 2,7);
         

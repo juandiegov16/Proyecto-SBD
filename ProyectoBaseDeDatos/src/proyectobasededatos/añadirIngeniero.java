@@ -5,7 +5,6 @@
  */
 package proyectobasededatos;
 
-
 import Datos.Cliente;
 import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException;
 import java.sql.Connection;
@@ -37,9 +36,9 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author Usuario
+ * @author Harold
  */
-public class añadiCliente extends Application{
+public class añadirIngeniero extends Application{
     VBox barrav ;
     HBox barra, barra2,barra3,barra4,barra5,barra6;
     ComboBox cedulas;
@@ -86,7 +85,7 @@ public class añadiCliente extends Application{
         añadir.setText("AÑADIR");
         //root.setStyle("-fx-background-image: url(\"/images/barco.jpg\");-fx-background-size: 500, 500;-fx-background-repeat: no-repeat;");
         barrav.setStyle("-fx-background-image: url(\"/images/barco.jpg\");-fx-background-size: 500, 700;-fx-background-repeat: no-repeat;");
-        Label id = new Label("Ingrese numero de cedula: ");
+        Label id = new Label("Ingrese numero de RUC: ");
         id.setFont(new Font("Arial", 15));
         id.setWrapText(true);
         id.setTextFill(Color.BLACK);
@@ -102,7 +101,7 @@ public class añadiCliente extends Application{
                 id.setScaleY(1);
             }
         });
-        Label nombre = new Label("Ingrese Nombre Cliente: ");
+        Label nombre = new Label("Ingrese Nombre Ingeniero: ");
         nombre.setFont(new Font("Arial", 15));
         nombre.setWrapText(true);
         nombre.setTextFill(Color.BLACK);
@@ -118,7 +117,7 @@ public class añadiCliente extends Application{
                 nombre.setScaleY(1);
             }
         });
-        Label direccion = new Label("Ingrese Dirección Cliente: ");
+        Label direccion = new Label("Ingrese Dirección Ingeniero: ");
         direccion.setFont(new Font("Arial", 15));
         direccion.setWrapText(true);
         direccion.setTextFill(Color.BLACK);
@@ -134,7 +133,7 @@ public class añadiCliente extends Application{
                 direccion.setScaleY(1);
             }
         });
-        Label telefono = new Label("Ingrese Teléfono Cliente: ");
+        Label telefono = new Label("Ingrese Teléfono Ingeniero: ");
         telefono.setFont(new Font("Arial", 15));
         telefono.setWrapText(true);
         telefono.setTextFill(Color.BLACK);
@@ -182,7 +181,7 @@ public class añadiCliente extends Application{
         root.setBottom(barra5);
         root.setTop(barra6);
         Scene scene = new Scene(root);       
-        primaryStage.setTitle("Añadir Cliente");
+        primaryStage.setTitle("Añadir Ingeniero");
         primaryStage.setScene(scene);
         primaryStage.setMinHeight(450);
         primaryStage.show();
@@ -213,7 +212,7 @@ public class añadiCliente extends Application{
                     try{
                         Class.forName("com.mysql.jdbc.Driver");
                         co = DriverManager.getConnection("jdbc:mysql://127.0.0.1/taller_re?user=root&password=root");
-                        PreparedStatement stm = co.prepareStatement("INSERT into cliente(cedulaRuc,nombreCliente,direccionCliente,telefonoCliente) VALUES (?,?,?,?)");
+                        PreparedStatement stm = co.prepareStatement("INSERT into ingeniero(RUCIng,nombreIng,direccionIng,telefono) VALUES (?,?,?,?)");
                         stm.setString(1,ced);
                         stm.setString(2,nom);
                         stm.setString(3,dir);
@@ -245,13 +244,13 @@ public class añadiCliente extends Application{
             Class.forName("com.mysql.jdbc.Driver");
             co = DriverManager.getConnection("jdbc:mysql://127.0.0.1/taller_re?user=root&password=root");
             stm = co.createStatement();
-            re = stm.executeQuery("Select * from cliente ");
+            re = stm.executeQuery("Select * from ingeniero ");
             Cliente c;
             while (re.next()){                 
-                if(cedula.getText() == null ? re.getString("cedulaRUC") == null : cedula.getText().equals(re.getString("cedulaRUC"))){
-                nombre.setText(re.getString("nombreCliente"));
-                direccion.setText(re.getString("direccionCliente"));
-                telefono.setText(re.getString("telefonoCliente"));
+                if(cedula.getText() == null ? re.getString("RUCIng") == null : cedula.getText().equals(re.getString("RUCIng"))){
+                nombre.setText(re.getString("nombreIng"));
+                direccion.setText(re.getString("direccionCIng"));
+                telefono.setText(re.getString("telefono"));
                 cedula.setEditable(false);
                 nombre.setEditable(false);
                 direccion.setEditable(false);
@@ -271,11 +270,11 @@ public class añadiCliente extends Application{
             Class.forName("com.mysql.jdbc.Driver");
             co = DriverManager.getConnection("jdbc:mysql://127.0.0.1/taller_re?user=root&password=root");
             stm = co.createStatement();
-            re = stm.executeQuery("Select * from cliente ");
+            re = stm.executeQuery("Select * from ingeniero ");
             System.out.println("CONEXION EXITOSA");
             Cliente c;
             while (re.next()){                 
-                System.out.println(re.getString("nombreCliente")+"--"+re.getString("cedulaRUC"));
+                System.out.println(re.getString("nombreIng")+"--"+re.getString("RUCIng"));
                 
             }
         }catch (ClassNotFoundException exc){
@@ -286,4 +285,5 @@ public class añadiCliente extends Application{
         }
     }   
 }
+
 
