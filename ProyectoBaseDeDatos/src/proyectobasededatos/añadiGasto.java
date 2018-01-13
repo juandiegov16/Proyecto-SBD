@@ -8,6 +8,7 @@ package proyectobasededatos;
 import Datos.Cliente;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -29,6 +30,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -137,7 +139,7 @@ public class añadiGasto {
             }
         });
         
-        Label fecha = new Label("Ingrese Fecha: ");
+        Label fecha = new Label("Ingrese Fecha año/mes/dia: ");
         fecha.setFont(new Font("Arial", 15));
         fecha.setWrapText(true);
         fecha.setTextFill(Color.BLACK);
@@ -241,37 +243,60 @@ public class añadiGasto {
                 }
             }
         });
-    }
-   /*     consultar.setOnAction(new EventHandler<ActionEvent>() {
+        añadir.setOnAction(new EventHandler<ActionEvent>() {
             
             @Override
             public void handle(ActionEvent event) {
-                try {
-                    Conexion(cedulat,nombret,direcciont,telefonot);
-                } catch (SQLException ex) {
-                    Logger.getLogger(consultarCliente.class.getName()).log(Level.SEVERE, null, ex);
+                    
+                    String idg = idgastot.getText(), tipg= tipogastot.getText(), valg = valorgastot.getText(), fechg = fechat.getText(), rucIng = rucingt.getText();
+                    try{
+                        Class.forName("com.mysql.jdbc.Driver");
+                        co = DriverManager.getConnection("jdbc:mysql://127.0.0.1/taller_re?user=root&password=root");
+                        PreparedStatement stm = co.prepareStatement("Insert Into gasto(idGasto,tipoGasto,valorGasto,fechaGasto,RUCIng) VALUES (?,?,?,?,?)");
+                        stm.setString(1,idg);
+                        stm.setString(2,tipg);
+                        stm.setString(3,valg);
+                        stm.setString(4,fechg);
+                        stm.setString(5,rucIng);                       
+                        stm.executeUpdate();
+                        idgastot.clear();
+                        tipogastot.clear();
+                        valorgastot.clear();
+                        fechat.clear();
+                        rucingt.clear();
+                        JOptionPane.showMessageDialog(null, "AÑADIDO CON EXITO");
+                        
+                    }catch(ClassNotFoundException exc){
+                        exc.printStackTrace();
+                    
+                    }catch(SQLException ex){
+                        Logger.getLogger(consultarCliente.class.getName()).log(Level.SEVERE, null,ex);
+                    }
                 }
-            }
+                 
+            
         });
         
     }
-
-    public  void Conexion(TextField cedula,TextField nombre,TextField direccion,TextField telefono) throws SQLException{
+    public  void Conexion(TextField id,TextField tipo,TextField valor,TextField fecha,TextField RUCIng) throws SQLException{
                     
         try{
             Class.forName("com.mysql.jdbc.Driver");
-            co = DriverManager.getConnection("jdbc:mysql://127.0.0.1/taller_re?user=root&password=danny");
+            co = DriverManager.getConnection("jdbc:mysql://127.0.0.1/taller_re?user=root&password=root");
             stm = co.createStatement();
-            re = stm.executeQuery("Select * from cliente ");
+            re = stm.executeQuery("Select * from gasto ");
             Cliente c;
             while (re.next()){                 
-                if(cedula.getText() == null ? re.getString("cedulaRUC") == null : cedula.getText().equals(re.getString("cedulaRUC"))){
-                nombre.setText(re.getString("nombreCliente"));
-                direccion.setText(re.getString("direccionCliente"));
-                telefono.setText(re.getString("telefonoCliente"));
-                nombre.setEditable(false);
-                direccion.setEditable(false);
-                telefono.setEditable(false); 
+                if(id.getText() == null ? re.getString("idGasto") == null : id.getText().equals(re.getString("idGasto"))){
+                tipo.setText(re.getString("tipoGasto"));
+                valor.setText(re.getString("valorGasto"));
+                fecha.setText(re.getString("fechaGasto"));
+                RUCIng.setText(re.getString("RUCIng"));
+                id.setEditable(false);
+                tipo.setEditable(false);
+                valor.setEditable(false);
+                fecha.setEditable(false); 
+                RUCIng.setEditable(false); 
                 }
             }
         }catch (ClassNotFoundException exc){
@@ -280,25 +305,25 @@ public class añadiGasto {
         catch(SQLException ex){
             Logger.getLogger(consultarCliente.class.getName()).log(Level.SEVERE, null,ex);
         }
-    } */
+    } 
     public  void Conexion() throws SQLException{
                     
         try{
             Class.forName("com.mysql.jdbc.Driver");
-            co = DriverManager.getConnection("jdbc:mysql://127.0.0.1/taller_re?user=root&password=danny");
+            co = DriverManager.getConnection("jdbc:mysql://127.0.0.1/taller_re?user=root&password=root");
             stm = co.createStatement();
-            re = stm.executeQuery("Select * from cliente ");
+            re = stm.executeQuery("Select * from gasto ");
             System.out.println("CONEXION EXITOSA");
             Cliente c;
             while (re.next()){                 
-                System.out.println(re.getString("nombreCliente")+"--"+re.getString("cedulaRUC"));
+                System.out.println(re.getString("valorgasto")+"--"+re.getString("idGasto"));
                 
             }
         }catch (ClassNotFoundException exc){
             exc.printStackTrace();
         }
         catch(SQLException ex){
-            Logger.getLogger(consultaGasto.class.getName()).log(Level.SEVERE, null,ex);
+            Logger.getLogger(consultarCliente.class.getName()).log(Level.SEVERE, null,ex);
         }
-    }     
+    }   
 }
