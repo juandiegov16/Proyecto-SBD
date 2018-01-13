@@ -6,8 +6,10 @@
 package proyectobasededatos;
 
 import Datos.Cliente;
+import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -29,6 +31,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -261,37 +264,65 @@ public class añadiMotor {
                 }
             }
         });
-    }
-   /*     consultar.setOnAction(new EventHandler<ActionEvent>() {
+        añadir.setOnAction(new EventHandler<ActionEvent>() {
             
             @Override
             public void handle(ActionEvent event) {
-                try {
-                    Conexion(cedulat,nombret,direcciont,telefonot);
-                } catch (SQLException ex) {
-                    Logger.getLogger(consultarCliente.class.getName()).log(Level.SEVERE, null, ex);
+             
+                    String serial = serialmot.getText(), marca= marcamot.getText(), model = modelomot.getText(), hora = horasot.getText(),tipo = tipoprot.getText(),num = numsbt.getText();
+                    try{
+                        Class.forName("com.mysql.jdbc.Driver");
+                        co = DriverManager.getConnection("jdbc:mysql://127.0.0.1/taller_re?user=root&password=root");
+                        PreparedStatement stm = co.prepareStatement("INSERT into motor(numSM,marcaMotor,modeloMotor,horasOperacion,tipoPropulsion,numSB) VALUES (?,?,?,?,?,?)");
+                        stm.setString(1,serial);
+                        stm.setString(2,marca);
+                        stm.setString(3,model);
+                        stm.setString(4,hora);
+                        stm.setString(5,tipo);
+                        stm.setString(6,num);
+                        stm.executeUpdate();
+                        serialmot.clear();
+                        marcamot.clear();
+                        modelomot.clear();
+                        horasot.clear();
+                        tipoprot.clear();
+                        numsbt.clear();
+                
+                        JOptionPane.showMessageDialog(null, "MODIFICADO CON EXITO");
+                    }catch(MySQLIntegrityConstraintViolationException msicve){
+                        JOptionPane.showMessageDialog(null, "Datos ya existentes");    
+                    }catch(ClassNotFoundException exc){
+                        exc.printStackTrace();
+                    
+                    }catch(SQLException ex){
+                        Logger.getLogger(consultarCliente.class.getName()).log(Level.SEVERE, null,ex);
+                    }
                 }
-            }
+                 
+            
         });
-        
     }
 
-    public  void Conexion(TextField cedula,TextField nombre,TextField direccion,TextField telefono) throws SQLException{
+    public  void Conexion(TextField serial,TextField cantidad,TextField descripcion,TextField valorRep, TextField frecUso, TextField factura) throws SQLException{
                     
         try{
             Class.forName("com.mysql.jdbc.Driver");
-            co = DriverManager.getConnection("jdbc:mysql://127.0.0.1/taller_re?user=root&password=danny");
+            co = DriverManager.getConnection("jdbc:mysql://127.0.0.1/taller_re?user=root&password=root");
             stm = co.createStatement();
-            re = stm.executeQuery("Select * from cliente ");
+            re = stm.executeQuery("Select * from motor ");
             Cliente c;
             while (re.next()){                 
-                if(cedula.getText() == null ? re.getString("cedulaRUC") == null : cedula.getText().equals(re.getString("cedulaRUC"))){
-                nombre.setText(re.getString("nombreCliente"));
-                direccion.setText(re.getString("direccionCliente"));
-                telefono.setText(re.getString("telefonoCliente"));
-                nombre.setEditable(false);
-                direccion.setEditable(false);
-                telefono.setEditable(false); 
+                if(serial.getText() == null ? re.getString("numSM") == null : serial.getText().equals(re.getString("numSM"))){
+                cantidad.setText(re.getString("marcaMotor"));
+                descripcion.setText(re.getString("modeloMotor"));
+                valorRep.setText(re.getString("horasOperacion"));
+                frecUso.setText(re.getString("tipoPropulsion"));
+                factura.setText(re.getString("numSB"));
+                cantidad.setEditable(false);
+                descripcion.setEditable(false);
+                valorRep.setEditable(false);
+                frecUso.setEditable(false);
+                factura.setEditable(false);
                 }
             }
         }catch (ClassNotFoundException exc){
@@ -300,18 +331,18 @@ public class añadiMotor {
         catch(SQLException ex){
             Logger.getLogger(consultarCliente.class.getName()).log(Level.SEVERE, null,ex);
         }
-    } */
+    } 
     public  void Conexion() throws SQLException{
                     
         try{
             Class.forName("com.mysql.jdbc.Driver");
-            co = DriverManager.getConnection("jdbc:mysql://127.0.0.1/taller_re?user=root&password=danny");
+            co = DriverManager.getConnection("jdbc:mysql://127.0.0.1/taller_re?user=root&password=root");
             stm = co.createStatement();
-            re = stm.executeQuery("Select * from cliente ");
+            re = stm.executeQuery("Select * from motor ");
             System.out.println("CONEXION EXITOSA");
             Cliente c;
             while (re.next()){                 
-                System.out.println(re.getString("nombreCliente")+"--"+re.getString("cedulaRUC"));
+                System.out.println(re.getString("numSM")+"--"+re.getString("marcaMotor")+"--"+re.getString("modeloMotor")+"--"+re.getString("horasOperacion")+"--"+re.getString("tipoPropulsion")+"--"+re.getString("numSB"));
                 
             }
         }catch (ClassNotFoundException exc){

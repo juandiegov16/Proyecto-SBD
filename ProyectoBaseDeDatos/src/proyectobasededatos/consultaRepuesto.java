@@ -274,7 +274,7 @@ public class consultaRepuesto {
             }
         });
     
-    consultar.setOnAction(new EventHandler<ActionEvent>() {
+        consultar.setOnAction(new EventHandler<ActionEvent>() {
             
             @Override
             public void handle(ActionEvent event) {
