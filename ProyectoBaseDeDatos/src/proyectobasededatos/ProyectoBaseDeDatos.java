@@ -236,6 +236,34 @@ public class ProyectoBaseDeDatos extends Application {
                     Logger.getLogger(ProyectoBaseDeDatos.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
+        }); 
+        Button btn8 = new Button();
+        btn8.setText("Consultar");
+        btn8.setOnAction(new EventHandler<ActionEvent>() {
+            
+            @Override
+            public void handle(ActionEvent event) {
+                ConsultarOrden c = new ConsultarOrden();
+                try {
+                    c.start(primaryStage);
+                } catch (Exception ex) {
+                    Logger.getLogger(ProyectoBaseDeDatos.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        });
+        Button btna8 = new Button();
+        btna8.setText("Añadir");
+                btna8.setOnAction(new EventHandler<ActionEvent>() {
+            
+            @Override
+            public void handle(ActionEvent event) {
+                añadirOrden c = new añadirOrden();
+                try {
+                    c.start(primaryStage);
+                } catch (Exception ex) {
+                    Logger.getLogger(ProyectoBaseDeDatos.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
         });        
         Button salir = new Button();
         salir.setText("SALIR");
@@ -280,6 +308,10 @@ public class ProyectoBaseDeDatos extends Application {
         root.add(consultarIngeniero ,0,6);
         root.add(btn7,1,6);
         root.add(btna7,2,6);
+        Label consultarOrden = new Label("Consultar Orden");
+        root.add(consultarOrden ,0,7);
+        root.add(btn8,1,7);
+        root.add(btna8,2,7);
         
         consultarCliente.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override public void handle(MouseEvent e) {
@@ -368,6 +400,18 @@ public class ProyectoBaseDeDatos extends Application {
                 consultarIngeniero.setScaleY(1);
             }
         });
+        consultarOrden.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override public void handle(MouseEvent e) {
+                consultarOrden.setScaleX(1.1);
+                consultarOrden.setScaleY(1.1);
+            }
+        });
+        consultarOrden.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override public void handle(MouseEvent e) {
+                consultarOrden.setScaleX(1);
+                consultarOrden.setScaleY(1);
+            }
+        });
         
         consultarBote.setFont(new Font("Arial", 15));
         consultarBote.setWrapText(true);
@@ -390,8 +434,11 @@ public class ProyectoBaseDeDatos extends Application {
         consultarIngeniero.setFont(new Font("Arial", 15));
         consultarIngeniero.setWrapText(true);
         consultarIngeniero.setTextFill(Color.BLACK);
+        consultarOrden.setFont(new Font("Arial", 15));
+        consultarOrden.setWrapText(true);
+        consultarOrden.setTextFill(Color.BLACK);
 
-        root.add(salir, 2,7);
+        root.add(salir, 2,8);
         
         root.setAlignment(Pos.CENTER);
         
@@ -399,7 +446,7 @@ public class ProyectoBaseDeDatos extends Application {
 
         primaryStage.setMinHeight(300);
         primaryStage.setMinWidth(500);
-        primaryStage.setMaxHeight(300);
+        primaryStage.setMaxHeight(500);
         primaryStage.setMaxWidth(500);
         
         primaryStage.setTitle("Menu Principal");

@@ -144,7 +144,7 @@ public class añadirOrden {
         barra2.getChildren().addAll(fecha,fechaorden);
         
         
-        barrabo.getChildren().addAll(salir, regresar, refrescar, consultar,modificar,añadir);
+        barrabo.getChildren().addAll(salir, regresar, refrescar,añadir);
         barra.setSpacing(15);
         barra.setAlignment(Pos.CENTER);
         barra2.setSpacing(15);

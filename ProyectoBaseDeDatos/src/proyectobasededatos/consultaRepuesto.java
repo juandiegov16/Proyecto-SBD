@@ -320,7 +320,7 @@ public class consultaRepuesto {
                     try{
                         Class.forName("com.mysql.jdbc.Driver");
                         co = DriverManager.getConnection("jdbc:mysql://127.0.0.1/taller_re?user=root&password=root");
-                        PreparedStatement stm = co.prepareStatement("Update repuesto set numSR = ?, cantidad = ?,descripcion = ? ,valorRep = ?,frecuenciaUso = ?,numFactura = ?, where numSB = ?");
+                        PreparedStatement stm = co.prepareStatement("Update repuesto set numSR = ?, cantidad = ?,descripcion = ? ,valorRep = ?,frecuenciaUso = ?,numFactura = ? where numSB = ?");
                         stm.setString(1,serial);
                         stm.setString(2,cant);
                         stm.setString(3,desc);
