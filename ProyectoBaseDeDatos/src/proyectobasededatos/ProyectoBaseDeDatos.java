@@ -41,7 +41,7 @@ public class ProyectoBaseDeDatos extends Application {
     @Override
     public void start(Stage primaryStage)  {
         
-        Button eliCli = new Button("Eliminar");
+        Button eliCli = new Button("Borrar");
         Button eliBot = new Button("Eliminar");
         Button eliSer = new Button("Eliminar");
         Button eliGas = new Button("Eliminar");
