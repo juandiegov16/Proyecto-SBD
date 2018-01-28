@@ -42,13 +42,13 @@ public class ProyectoBaseDeDatos extends Application {
     public void start(Stage primaryStage)  {
         
         Button eliCli = new Button("Borrar");
-        Button eliBot = new Button("Eliminar");
-        Button eliSer = new Button("Eliminar");
-        Button eliGas = new Button("Eliminar");
-        Button eliRep = new Button("Eliminar");
-        Button eliMot = new Button("Eliminar");
-        Button eliIng = new Button("Eliminar");
-        Button eliOrd = new Button("Eliminar");
+        Button eliBot = new Button("Borrar");
+        Button eliSer = new Button("Borrar");
+        Button eliGas = new Button("Borrar");
+        Button eliRep = new Button("Borrar");
+        Button eliMot = new Button("Borrar");
+        Button eliIng = new Button("Borrar");
+        Button eliOrd = new Button("Borrar");
         
         
                
