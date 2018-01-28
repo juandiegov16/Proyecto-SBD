@@ -40,6 +40,17 @@ public class ProyectoBaseDeDatos extends Application {
     
     @Override
     public void start(Stage primaryStage)  {
+        
+        Button eliCli = new Button("Eliminar");
+        Button eliBot = new Button("Eliminar");
+        Button eliSer = new Button("Eliminar");
+        Button eliGas = new Button("Eliminar");
+        Button eliRep = new Button("Eliminar");
+        Button eliMot = new Button("Eliminar");
+        Button eliIng = new Button("Eliminar");
+        Button eliOrd = new Button("Eliminar");
+        
+        
                
         Button btn1 = new Button();
         btn1.setText("Consultar");
@@ -283,35 +294,43 @@ public class ProyectoBaseDeDatos extends Application {
         Label consultarCliente = new Label("Consultar Cliente");
         root.add(consultarCliente,0,0);
         root.add(btn1,1,0);
-        root.add(btna1,2,0);        
+        root.add(btna1,2,0);
+        root.add(eliCli,3,0);
         Label consultarBote = new Label("Consultar Bote");
         root.add(consultarBote,0,1);
         root.add(btn2,1,1);
         root.add(btna2,2,1);
+        root.add(eliBot,3,1);
         Label consultarServicio = new Label("Consultar Servicio-Factura");
         root.add(consultarServicio,0,2);
         root.add(btn3,1,2);
         root.add(btna3,2,2);
+        root.add(eliSer,3,2);
         Label consultarGasto = new Label("Consultar Gasto");
         root.add(consultarGasto,0,3);
         root.add(btn4,1,3);
         root.add(btna4,2,3);
+        root.add(eliGas,3,3);
         Label consultarRepuesto = new Label("Consultar Repuesto");
         root.add(consultarRepuesto,0,4);
         root.add(btn5,1,4);
         root.add(btna5,2,4);
+        root.add(eliRep,3,4);
         Label consultarMotor = new Label("Consultar Motor");
         root.add(consultarMotor,0,5);
         root.add(btn6,1,5);
         root.add(btna6,2,5);
+        root.add(eliMot,3,5);
         Label consultarIngeniero = new Label("Consultar Ingeniero");
         root.add(consultarIngeniero ,0,6);
         root.add(btn7,1,6);
         root.add(btna7,2,6);
+        root.add(eliIng,3,6);
         Label consultarOrden = new Label("Consultar Orden");
         root.add(consultarOrden ,0,7);
         root.add(btn8,1,7);
         root.add(btna8,2,7);
+        root.add(eliOrd,3,7);
         
         consultarCliente.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override public void handle(MouseEvent e) {
