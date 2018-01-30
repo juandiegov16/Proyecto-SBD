@@ -37,21 +37,22 @@ import javafx.scene.text.Font;
  * @author Harold
  */
 public class ProyectoBaseDeDatos extends Application {
+    Button eliCli,eliBot,eliSer,eliGas,eliRep,eliMot,eliIng,eliOrd;
     
     @Override
     public void start(Stage primaryStage)  {
         
-        Button eliCli = new Button("Borrar");
-        Button eliBot = new Button("Borrar");
-        Button eliSer = new Button("Borrar");
-        Button eliGas = new Button("Borrar");
-        Button eliRep = new Button("Borrar");
-        Button eliMot = new Button("Borrar");
-        Button eliIng = new Button("Borrar");
-        Button eliOrd = new Button("Borrar");
+        eliCli = new Button("Borrar");
+        eliBot = new Button("Borrar");
+        eliSer = new Button("Borrar");
+        eliGas = new Button("Borrar");
+        eliRep = new Button("Borrar");
+        eliMot = new Button("Borrar");
+        eliIng = new Button("Borrar");
+        eliOrd = new Button("Borrar");
         
+        Borrar(primaryStage);
         
-               
         Button btn1 = new Button();
         btn1.setText("Consultar");
         btn1.setOnAction(new EventHandler<ActionEvent>() {
@@ -479,5 +480,102 @@ public class ProyectoBaseDeDatos extends Application {
     public static void main(String[] args) {
         launch(args);
     }
-    
+    public void Borrar(Stage primaryStage){
+        eliCli.setOnAction(new EventHandler<ActionEvent>() {
+            
+            @Override
+            public void handle(ActionEvent event) {
+                EliminarCliente c = new EliminarCliente();
+                try {
+                    c.start(primaryStage);
+                } catch (Exception ex) {
+                    Logger.getLogger(ProyectoBaseDeDatos.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        });
+        eliBot.setOnAction(new EventHandler<ActionEvent>() {
+            
+            @Override
+            public void handle(ActionEvent event) {
+                EliminarBote c = new EliminarBote();
+                try {
+                    c.start(primaryStage);
+                } catch (Exception ex) {
+                    Logger.getLogger(ProyectoBaseDeDatos.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        });
+        eliGas.setOnAction(new EventHandler<ActionEvent>() {
+            
+            @Override
+            public void handle(ActionEvent event) {
+                EliminarGasto c = new EliminarGasto();
+                try {
+                    c.start(primaryStage);
+                } catch (Exception ex) {
+                    Logger.getLogger(ProyectoBaseDeDatos.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        });
+        eliIng.setOnAction(new EventHandler<ActionEvent>() {
+            
+            @Override
+            public void handle(ActionEvent event) {
+                EliminarIngeniero c = new EliminarIngeniero();
+                try {
+                    c.start(primaryStage);
+                } catch (Exception ex) {
+                    Logger.getLogger(ProyectoBaseDeDatos.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        });
+        eliMot.setOnAction(new EventHandler<ActionEvent>() {
+            
+            @Override
+            public void handle(ActionEvent event) {
+                EliminarMotor c = new EliminarMotor();
+                try {
+                    c.start(primaryStage);
+                } catch (Exception ex) {
+                    Logger.getLogger(ProyectoBaseDeDatos.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        });
+        eliOrd.setOnAction(new EventHandler<ActionEvent>() {
+            
+            @Override
+            public void handle(ActionEvent event) {
+                EliminarOrden c = new EliminarOrden();
+                try {
+                    c.start(primaryStage);
+                } catch (Exception ex) {
+                    Logger.getLogger(ProyectoBaseDeDatos.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        });
+        eliRep.setOnAction(new EventHandler<ActionEvent>() {
+            
+            @Override
+            public void handle(ActionEvent event) {
+                EliminarRepuesto c = new EliminarRepuesto();
+                try {
+                    c.start(primaryStage);
+                } catch (Exception ex) {
+                    Logger.getLogger(ProyectoBaseDeDatos.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        });
+        eliSer.setOnAction(new EventHandler<ActionEvent>() {
+            
+            @Override
+            public void handle(ActionEvent event) {
+                EliminarServicio c = new EliminarServicio();
+                try {
+                    c.start(primaryStage);
+                } catch (Exception ex) {
+                    Logger.getLogger(ProyectoBaseDeDatos.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        });
+    }
 }
