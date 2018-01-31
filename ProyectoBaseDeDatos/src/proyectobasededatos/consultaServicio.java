@@ -81,14 +81,14 @@ public class consultaServicio extends Application{
         });
         
         //IMAGEN DE PORTADA
-        titulo.setStyle("-fx-background-image: url(\"/images/logo.jpg\");-fx-background-size: 550, 150;-fx-background-repeat: no-repeat;");
-        titulo.setPrefSize(550, 150);
+        titulo.setStyle("-fx-background-image: url(\"/images/logo.jpg\");-fx-background-size: 500, 100;-fx-background-repeat: no-repeat;");
+        titulo.setPrefSize(500, 100);
         titulo.setDisable(false);
         //
         Button consultar = new Button();
         consultar.setText("CONSULTAR");
         //root.setStyle("-fx-background-image: url(\"/images/barco.jpg\");-fx-background-size: 500, 500;-fx-background-repeat: no-repeat;");
-        barrav.setStyle("-fx-background-image: url(\"/images/barco.jpg\");-fx-background-size: 550, 950;-fx-background-repeat: no-repeat;");
+        barrav.setStyle("-fx-background-image: url(\"/images/barco.jpg\");-fx-background-size: 500, 700;-fx-background-repeat: no-repeat;");
         
         //LABELS QUE CONTIENEN LOS CAMPOS DE LA TABLA
         Label idfactura = new Label("Ingrese numero de factura: ");
@@ -196,7 +196,7 @@ public class consultaServicio extends Application{
         Label numsr = new Label("Número Serial de Repuesto: ");
         numsr.setFont(new Font("Arial", 15));
         numsr.setWrapText(true);
-        numsr.setTextFill(Color.BLACK);
+        numsr.setTextFill(Color.WHITE);
         numsr.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override public void handle(MouseEvent e) {
                 numsr.setScaleX(1.1);
@@ -323,7 +323,7 @@ public class consultaServicio extends Application{
        
         //contenedor de todos hbox
         barrati.getChildren().add(titulo);
-        barrati.setPrefSize(100, 100);
+        barrati.setPrefSize(500, 100);
         barrav.getChildren().addAll(barra,barra2,barra3,barra4,barra5,barra6,barra7,barra8,barra9,barra10);
         barrav.setAlignment(Pos.CENTER);
         barrav.setSpacing(15);
@@ -333,8 +333,6 @@ public class consultaServicio extends Application{
         Scene scene = new Scene(root);       
         primaryStage.setTitle("Consulta Factura-Servicio");
         primaryStage.setScene(scene);
-        primaryStage.setMinWidth(550);
-        primaryStage.setMinHeight(600);
         primaryStage.show();
         
         refrescar.setOnAction(new EventHandler<ActionEvent>() {

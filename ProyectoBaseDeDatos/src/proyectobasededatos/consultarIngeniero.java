@@ -80,13 +80,13 @@ public class consultarIngeniero extends Application {
         modificar.setText("MODIFICAR");
         
         barra6=new HBox();
-        titulo.setStyle("-fx-background-image: url(\"/images/logo.jpg\");-fx-background-size: 550, 150;-fx-background-repeat: no-repeat;");
-        titulo.setPrefSize(550, 150);
+        titulo.setStyle("-fx-background-image: url(\"/images/logo.jpg\");-fx-background-size: 500, 100;-fx-background-repeat: no-repeat;");
+        titulo.setPrefSize(500, 100);
         titulo.setDisable(false);
         Button consultar = new Button();
         consultar.setText("CONSULTAR");
         //root.setStyle("-fx-background-image: url(\"/images/barco.jpg\");-fx-background-size: 500, 500;-fx-background-repeat: no-repeat;");
-        barrav.setStyle("-fx-background-image: url(\"/images/barco.jpg\");-fx-background-size: 550, 700;-fx-background-repeat: no-repeat;");
+        barrav.setStyle("-fx-background-image: url(\"/images/barco.jpg\");-fx-background-size: 500, 700;-fx-background-repeat: no-repeat;");
         Label id = new Label("Ingrese numero de RUC: ");
         id.setFont(new Font("Arial", 15));
         id.setWrapText(true);
@@ -178,7 +178,7 @@ public class consultarIngeniero extends Application {
         barra.setSpacing(15);
         barra.setAlignment(Pos.CENTER);
         barra6.getChildren().add(titulo);
-        barra6.setPrefSize(100, 100);
+        barra6.setPrefSize(500, 100);
         barrav.getChildren().addAll(barra,barra2,barra3,barra4);
         barrav.setAlignment(Pos.CENTER);
         barrav.setSpacing(15);
@@ -188,8 +188,6 @@ public class consultarIngeniero extends Application {
         Scene scene = new Scene(root);       
         primaryStage.setTitle("Consulta Ingeniero");
         primaryStage.setScene(scene);
-        primaryStage.setMinWidth(550);
-        primaryStage.setMinHeight(450);
         cedulat.setEditable(true);
         nombret.setEditable(false);
         direcciont.setEditable(false);

@@ -78,14 +78,14 @@ public class añadiRepuesto {
         });
         
         //IMAGEN DE PORTADA
-        titulo.setStyle("-fx-background-image: url(\"/images/logo.jpg\");-fx-background-size: 550, 150;-fx-background-repeat: no-repeat;");
-        titulo.setPrefSize(550, 150);
+        titulo.setStyle("-fx-background-image: url(\"/images/logo.jpg\");-fx-background-size: 500, 100;-fx-background-repeat: no-repeat;");
+        titulo.setPrefSize(500, 100);
         titulo.setDisable(false);
         //
         Button consultar = new Button();
         consultar.setText("CONSULTAR");
         //root.setStyle("-fx-background-image: url(\"/images/barco.jpg\");-fx-background-size: 500, 500;-fx-background-repeat: no-repeat;");
-        barrav.setStyle("-fx-background-image: url(\"/images/barco.jpg\");-fx-background-size: 550, 700;-fx-background-repeat: no-repeat;");
+        barrav.setStyle("-fx-background-image: url(\"/images/barco.jpg\");-fx-background-size: 500, 700;-fx-background-repeat: no-repeat;");
         
         //LABELS QUE CONTIENEN LOS CAMPOS DE LA TABLA
         Label serialre = new Label("Ingrese el n° Serial del Repuesto: ");
@@ -234,7 +234,7 @@ public class añadiRepuesto {
        
         //contenedor de todos hbox
         barrati.getChildren().add(titulo);
-        barrati.setPrefSize(100, 100);
+        barrati.setPrefSize(500, 100);
         barrav.getChildren().addAll(barra,barra2,barra3,barra4,barra5,barra6);
         barrav.setAlignment(Pos.CENTER);
         barrav.setSpacing(15);
@@ -244,8 +244,6 @@ public class añadiRepuesto {
         Scene scene = new Scene(root);       
         primaryStage.setTitle("Añadir Repuesto");
         primaryStage.setScene(scene);
-        primaryStage.setMinWidth(550);
-        primaryStage.setMinHeight(450);
         primaryStage.show();
         
         refrescar.setOnAction(new EventHandler<ActionEvent>() {

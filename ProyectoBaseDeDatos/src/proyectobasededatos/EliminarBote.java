@@ -61,14 +61,14 @@ public class EliminarBote extends Application{
         
         contLabels.setStyle("-fx-background-image: url(\"/images/barco.jpg\");-fx-background-size: 500, 700;-fx-background-repeat: no-repeat;");
         titulo.setStyle("-fx-background-image: url(\"/images/logo.jpg\");-fx-background-size: 500, 150;-fx-background-repeat: no-repeat;");
-        titulo.setPrefSize(500, 150);
+        titulo.setPrefSize(500, 100);
         titulo.setDisable(false);
         
         Botones(primaryStage);
         acciones();
         
         contTop.getChildren().add(titulo);
-        contTop.setPrefSize(100, 100);
+        contTop.setPrefSize(500, 100);
         
         contBoton.getChildren().addAll(salir,regresar,aceptar);
         contBoton.setAlignment(Pos.CENTER);
@@ -158,7 +158,7 @@ public class EliminarBote extends Application{
                     
         try{
             Class.forName("com.mysql.jdbc.Driver");
-            co = DriverManager.getConnection("jdbc:mysql://127.0.0.1/taller_re?user=root&password=danny");
+            co = DriverManager.getConnection("jdbc:mysql://127.0.0.1/taller_re?user=root&password=root");
             stm = co.createStatement();
             re = stm.executeQuery("Select * from bote ");
             while (re.next()){                 
