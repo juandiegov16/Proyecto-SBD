@@ -41,7 +41,7 @@ import javax.swing.JOptionPane;
 public class ProyectoBaseDeDatos extends Application {
     Button eliCli,eliBot,eliSer,eliGas,eliRep,eliMot,eliIng,eliOrd;
     VBox labels,consulta,añadirV,borrarV;
-    HBox contenedor,deepB;
+    HBox contenedor,deepB,conTop;
     @Override
     public void start(Stage primaryStage)  {
         String cliente = "cliente",administrador = "administrador";
@@ -481,7 +481,7 @@ public class ProyectoBaseDeDatos extends Application {
         Scene scene = new Scene(root); 
 
         
-        String[] options = {"Cliente", "Administrador "};
+        /*String[] options = {"Cliente", "Administrador "};
         int seleccion = JOptionPane.showOptionDialog(null, "Es necesario que seleccione de que tipo es el usuario", "Ingreso al Programa", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE,null, options, options[0]);
         if(JOptionPane.OK_OPTION == seleccion){
             System.out.println("BIENVENIDO CLIENTE!!!!");
@@ -504,7 +504,7 @@ public class ProyectoBaseDeDatos extends Application {
         }else{
             System.out.println("BIENVENIDO ADMINISTRADOR!!!!");
 
-        };
+        };*/
 
         
        
