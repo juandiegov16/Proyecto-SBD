@@ -472,7 +472,7 @@ public class ProyectoBaseDeDatos extends Application {
         consultarMotor.setTextFill(Color.BLACK);
         consultarIngeniero.setFont(new Font("Arial", 15));
         consultarIngeniero.setWrapText(true);
-        consultarIngeniero.setTextFill(Color.BLACK);
+        consultarIngeniero.setTextFill(Color.WHITE);
         consultarOrden.setFont(new Font("Arial", 15));
         consultarOrden.setWrapText(true);
         consultarOrden.setTextFill(Color.BLACK);

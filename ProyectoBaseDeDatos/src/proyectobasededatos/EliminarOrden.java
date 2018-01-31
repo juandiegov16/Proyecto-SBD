@@ -60,15 +60,15 @@ public class EliminarOrden extends Application{
         contTop = new HBox();
         
         contLabels.setStyle("-fx-background-image: url(\"/images/barco.jpg\");-fx-background-size: 500, 700;-fx-background-repeat: no-repeat;");
-        titulo.setStyle("-fx-background-image: url(\"/images/logo.jpg\");-fx-background-size: 500, 150;-fx-background-repeat: no-repeat;");
-        titulo.setPrefSize(500, 150);
+        titulo.setStyle("-fx-background-image: url(\"/images/logo.jpg\");-fx-background-size: 500, 100;-fx-background-repeat: no-repeat;");
+        titulo.setPrefSize(500, 100);
         titulo.setDisable(false);
         
         Botones(primaryStage);
         acciones();
         
         contTop.getChildren().add(titulo);
-        contTop.setPrefSize(100, 100);
+        contTop.setPrefSize(500, 100);
         
         contBoton.getChildren().addAll(salir,regresar,aceptar);
         contBoton.setAlignment(Pos.CENTER);

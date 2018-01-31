@@ -79,13 +79,13 @@ public class consultarBote {
             }
         });
         barra6=new HBox();
-        titulo.setStyle("-fx-background-image: url(\"/images/logo.jpg\");-fx-background-size: 550, 150;-fx-background-repeat: no-repeat;");
-        titulo.setPrefSize(550, 150);
+        titulo.setStyle("-fx-background-image: url(\"/images/logo.jpg\");-fx-background-size: 500, 100;-fx-background-repeat: no-repeat;");
+        titulo.setPrefSize(500, 100);
         titulo.setDisable(false);
         Button consultar = new Button();
         consultar.setText("CONSULTAR");
         //root.setStyle("-fx-background-image: url(\"/images/barco.jpg\");-fx-background-size: 500, 500;-fx-background-repeat: no-repeat;");
-        barrav.setStyle("-fx-background-image: url(\"/images/barco.jpg\");-fx-background-size: 550, 700;-fx-background-repeat: no-repeat;");
+        barrav.setStyle("-fx-background-image: url(\"/images/barco.jpg\");-fx-background-size: 500, 700;-fx-background-repeat: no-repeat;");
         Label serial = new Label("Ingrese el Serial: ");
         serial.setFont(new Font("Arial", 15));
         serial.setWrapText(true);
@@ -195,19 +195,17 @@ public class consultarBote {
         barra.setSpacing(15);
         barra.setAlignment(Pos.CENTER);
         barra6.getChildren().add(titulo);
-        barra6.setPrefSize(100, 100);
+        barra6.setPrefSize(500, 100);
         barrav.getChildren().addAll(barra,barra2,barra3,barra4,barra7);
         barrav.setAlignment(Pos.CENTER);
         barrav.setSpacing(15);
-        barrav.setPrefHeight(400);
+       
         root.setCenter(barrav);
         root.setBottom(barra5);
         root.setTop(barra6);
         Scene scene = new Scene(root);       
         primaryStage.setTitle("Consulta Bote");
         primaryStage.setScene(scene);
-        primaryStage.setMinWidth(550);
-        primaryStage.setMinHeight(450);
         serialt.setEditable(true);
         marcat.setEditable(false);
         modelot.setEditable(false);
