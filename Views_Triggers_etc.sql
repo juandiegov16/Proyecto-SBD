@@ -120,14 +120,19 @@ create user 'prueba'@'localhost' identified by 'root';
 GRANT SELECT, INSERT, UPDATE, DELETE, CREATE, DROP, 
     INDEX, ALTER, CREATE TEMPORARY TABLES 
 ON *.* TO 'prueba'@'localhost';
-    
-
-	
-
-
-
-
-
-
 
 /*Índices*/
+CREATE INDEX specsBote
+ON bote(numSB, marcaBote, modeloBote, eslora);
+
+CREATE INDEX specsRepuesto
+ON repuesto(numSR, descripcion, valorRep, frecuenciaUso);
+
+CREATE INDEX clientes
+ON cliente(nombreCliente);
+
+CREATE INDEX specsMotor
+ON motor(numSM, marcaMotor, modeloMotor, horasOperacion, tipoPropulsion);
+
+CREATE INDEX gastos
+on gasto(tipoGasto, valorGasto, fechaGasto);
