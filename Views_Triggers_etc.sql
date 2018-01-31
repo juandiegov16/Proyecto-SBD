@@ -97,6 +97,32 @@ CREATE VIEW ordenFactura AS
 
 
 /*Usuarios*/
+	#Admin de la base de datos, tiene todos los permisos en todas las tablas. Puede otorgar permisos
+create user 'admin'@'localhost' identified by 'drios';
+grant all privileges on taller.* to 'danny'@'localhost' with grant option;
+	
+    #Ingeniero, usuario tipo admin pero no puede otorgar permisos
+create user 'carlos'@'localhost' identified by 'ceva57';
+grant all privileges on taller.* to 'carlos'@'localhost';
+grant execute on taller.* to 'carlos'@'localhost';
+
+	#Cliente. Sólo puede ver la información que contiene la base de datos, no tiene permitido alterarla. No puede ejecutar SP's
+create user 'cliente'@'localhost' identified by '1234';
+grant select on taller.* to 'cliente'@'localhost';
+
+	#Asistente. Puede insertar datos pero no borrarlos.
+create user 'maria'@'localhost' identified by 'mech70';
+grant select, insert, update, create, alter on taller.* to 'maria'@'localhost';
+grant execute on taller.* to 'maria'@'localhost';
+
+	#Usuario de prueba.
+create user 'prueba'@'localhost' identified by 'root';
+GRANT SELECT, INSERT, UPDATE, DELETE, CREATE, DROP, 
+    INDEX, ALTER, CREATE TEMPORARY TABLES 
+ON *.* TO 'prueba'@'localhost';
+    
+
+	
 
 
 
