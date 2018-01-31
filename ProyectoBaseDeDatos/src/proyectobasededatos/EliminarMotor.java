@@ -87,7 +87,7 @@ public class EliminarMotor extends Application{
         primaryStage.setScene(scene);
         primaryStage.setMinHeight(450);
         primaryStage.show();
-    
+        Conexion();
     
     }
     public void Botones(Stage primaryStage){
@@ -193,7 +193,7 @@ public class EliminarMotor extends Application{
             System.out.println("CONEXION EXITOSA");
             Cliente c;
             while (re.next()){                 
-                System.out.println(re.getString("numSM")+"--"+re.getString("marcaMotor")+"--"+re.getString("modeloMotor")+"--"+re.getString("horasOperacion")+"--"+re.getString("tipoPropulsion")+"--"+re.getString("numSB"));
+                System.out.println(re.getString("numSM")+"--"+re.getString("marcaMotor"));
                 
             }
         }catch (ClassNotFoundException exc){

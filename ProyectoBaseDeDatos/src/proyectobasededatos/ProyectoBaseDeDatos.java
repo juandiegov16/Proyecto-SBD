@@ -27,10 +27,12 @@ import javafx.scene.Group;
 import javafx.scene.ImageCursor;
 import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -38,9 +40,16 @@ import javafx.scene.text.Font;
  */
 public class ProyectoBaseDeDatos extends Application {
     Button eliCli,eliBot,eliSer,eliGas,eliRep,eliMot,eliIng,eliOrd;
-    
+    VBox labels,consulta,añadirV,borrarV;
+    HBox contenedor,deepB;
     @Override
     public void start(Stage primaryStage)  {
+        String cliente = "cliente",administrador = "administrador";
+        
+        Button titulo=new Button();
+        titulo.setStyle("-fx-background-image: url(\"/images/logo.jpg\");-fx-background-size: 500, 100;-fx-background-repeat: no-repeat;");
+        titulo.setPrefSize(500, 100);
+        titulo.setDisable(false);
         
         eliCli = new Button("Borrar");
         eliBot = new Button("Borrar");
@@ -50,6 +59,15 @@ public class ProyectoBaseDeDatos extends Application {
         eliMot = new Button("Borrar");
         eliIng = new Button("Borrar");
         eliOrd = new Button("Borrar");
+        
+        labels = new VBox();
+        consulta = new VBox();
+        añadirV= new VBox();
+        borrarV = new VBox();
+        
+        
+        contenedor = new HBox();
+        deepB = new HBox();
         
         Borrar(primaryStage);
         
@@ -287,51 +305,52 @@ public class ProyectoBaseDeDatos extends Application {
             }
         });
         
-        GridPane root = new GridPane();
-        root.setVgap(10);
-        root.setHgap(10);
-        root.setStyle("-fx-background-image: url(\"/images/barco.jpg\");-fx-background-size: 500, 700;-fx-background-repeat: no-repeat;");
-        
-        Label consultarCliente = new Label("Consultar Cliente");
-        root.add(consultarCliente,0,0);
-        root.add(btn1,1,0);
-        root.add(btna1,2,0);
-        root.add(eliCli,3,0);
-        Label consultarBote = new Label("Consultar Bote");
-        root.add(consultarBote,0,1);
-        root.add(btn2,1,1);
-        root.add(btna2,2,1);
-        root.add(eliBot,3,1);
-        Label consultarServicio = new Label("Consultar Servicio-Factura");
-        root.add(consultarServicio,0,2);
-        root.add(btn3,1,2);
-        root.add(btna3,2,2);
-        root.add(eliSer,3,2);
-        Label consultarGasto = new Label("Consultar Gasto");
-        root.add(consultarGasto,0,3);
-        root.add(btn4,1,3);
-        root.add(btna4,2,3);
-        root.add(eliGas,3,3);
+        BorderPane root = new BorderPane();
+          
+        Label consultarCliente = new Label("Consultar Cliente");       
+        Label consultarBote = new Label("Consultar Bote");   
+        Label consultarServicio = new Label("Consultar Servicio-Factura");       
+        Label consultarGasto = new Label("Consultar Gasto");      
         Label consultarRepuesto = new Label("Consultar Repuesto");
-        root.add(consultarRepuesto,0,4);
-        root.add(btn5,1,4);
-        root.add(btna5,2,4);
-        root.add(eliRep,3,4);
         Label consultarMotor = new Label("Consultar Motor");
-        root.add(consultarMotor,0,5);
-        root.add(btn6,1,5);
-        root.add(btna6,2,5);
-        root.add(eliMot,3,5);
         Label consultarIngeniero = new Label("Consultar Ingeniero");
-        root.add(consultarIngeniero ,0,6);
-        root.add(btn7,1,6);
-        root.add(btna7,2,6);
-        root.add(eliIng,3,6);
         Label consultarOrden = new Label("Consultar Orden");
-        root.add(consultarOrden ,0,7);
-        root.add(btn8,1,7);
-        root.add(btna8,2,7);
-        root.add(eliOrd,3,7);
+        
+        labels.getChildren().addAll(consultarCliente,
+                                     consultarBote,
+                                     consultarServicio,
+                                     consultarGasto,
+                                     consultarRepuesto,
+                                     consultarMotor,
+                                     consultarIngeniero,
+                                     consultarOrden);
+        labels.setAlignment(Pos.CENTER);
+        labels.setSpacing(23);
+        
+        consulta.getChildren().addAll(btn1,btn2,btn3,btn4,btn5,btn6,btn7,btn8);
+        consulta.setAlignment(Pos.CENTER);
+        consulta.setSpacing(15);
+        
+        añadirV.getChildren().addAll(btna1,btna2,btna3,btna4,btna5,btna6,btna7,btna8);
+        añadirV.setAlignment(Pos.CENTER);
+        añadirV.setSpacing(15);
+        
+        borrarV.getChildren().addAll(eliCli,eliBot,eliSer,eliGas,eliRep,eliMot,eliIng,eliOrd);
+        borrarV.setAlignment(Pos.CENTER);
+        borrarV.setSpacing(15);
+
+        contenedor.getChildren().addAll(labels,consulta,añadirV,borrarV);
+        contenedor.setAlignment(Pos.CENTER);
+        contenedor.setSpacing(15);
+        contenedor.setStyle("-fx-background-image: url(\"/images/barco.jpg\");-fx-background-size: 500, 700;-fx-background-repeat: no-repeat;");
+        
+        deepB.getChildren().addAll(salir);
+        deepB.setAlignment(Pos.CENTER_RIGHT);
+        deepB.setSpacing(15);
+        
+        
+        root.setCenter(contenedor);
+        root.setTop(titulo);
         
         consultarCliente.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override public void handle(MouseEvent e) {
@@ -458,19 +477,41 @@ public class ProyectoBaseDeDatos extends Application {
         consultarOrden.setWrapText(true);
         consultarOrden.setTextFill(Color.BLACK);
 
-        root.add(salir, 2,8);
-        
-        root.setAlignment(Pos.CENTER);
-        
+        root.setBottom(deepB);
         Scene scene = new Scene(root); 
 
-        primaryStage.setMinHeight(300);
-        primaryStage.setMinWidth(500);
-        primaryStage.setMaxHeight(500);
-        primaryStage.setMaxWidth(500);
+        /*
+        String[] options = {"Cliente", "Administrador "};
+        int seleccion = JOptionPane.showOptionDialog(null, "Es necesario que seleccione de que tipo es el usuario", "Ingreso al Programa", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE,null, options, options[0]);
+        if(JOptionPane.OK_OPTION == seleccion){
+            System.out.println("BIENVENIDO CLIENTE!!!!");
+            eliCli.setDisable(true);
+            eliBot.setDisable(true);
+            eliSer.setDisable(true);
+            eliGas.setDisable(true);
+            eliRep.setDisable(true);
+            eliMot.setDisable(true);
+            eliIng.setDisable(true);
+            eliOrd.setDisable(true);
+            btna1.setDisable(true);
+            btna2.setDisable(true);
+            btna3.setDisable(true);
+            btna4.setDisable(true);
+            btna5.setDisable(true);
+            btna6.setDisable(true);
+            btna7.setDisable(true);
+            btna8 .setDisable(true);       
+        }else{
+            System.out.println("BIENVENIDO ADMINISTRADOR!!!!");
+
+        };*/
+
+        
+       
         
         primaryStage.setTitle("Menu Principal");
         primaryStage.setScene(scene);
+        primaryStage.setMinHeight(450);
         primaryStage.show();
     }
 

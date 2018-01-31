@@ -79,8 +79,8 @@ public class añadiCliente extends Application{
         });
         
         barra6=new HBox();
-        titulo.setStyle("-fx-background-image: url(\"/images/logo.jpg\");-fx-background-size: 500, 150;-fx-background-repeat: no-repeat;");
-        titulo.setPrefSize(500, 150);
+        titulo.setStyle("-fx-background-image: url(\"/images/logo.jpg\");-fx-background-size: 500, 100;-fx-background-repeat: no-repeat;");
+        titulo.setPrefSize(500, 100);
         titulo.setDisable(false);
         Button añadir = new Button();
         añadir.setText("AÑADIR");
@@ -174,13 +174,14 @@ public class añadiCliente extends Application{
         barra.setSpacing(15);
         barra.setAlignment(Pos.CENTER);
         barra6.getChildren().add(titulo);
-        barra6.setPrefSize(100, 100);
+        barra6.setPrefSize(500, 100);
         barrav.getChildren().addAll(barra,barra2,barra3,barra4);
         barrav.setAlignment(Pos.CENTER);
         barrav.setSpacing(15);
         root.setCenter(barrav);
         root.setBottom(barra5);
         root.setTop(barra6);
+        
         Scene scene = new Scene(root);       
         primaryStage.setTitle("Añadir Cliente");
         primaryStage.setScene(scene);

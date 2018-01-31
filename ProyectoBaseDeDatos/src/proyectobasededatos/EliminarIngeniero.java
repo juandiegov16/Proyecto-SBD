@@ -88,7 +88,7 @@ public class EliminarIngeniero extends Application{
         primaryStage.setMinHeight(450);
         primaryStage.show();
     
-    
+        Conexion();
     }
     public void Botones(Stage primaryStage){
         regresar.setOnAction(new EventHandler<ActionEvent>() {

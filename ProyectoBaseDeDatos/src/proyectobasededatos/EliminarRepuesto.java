@@ -87,7 +87,7 @@ public class EliminarRepuesto extends Application{
         primaryStage.setScene(scene);
         primaryStage.setMinHeight(450);
         primaryStage.show();
-    
+        Conexion();
     
     }
     public void Botones(Stage primaryStage){
@@ -193,7 +193,7 @@ public class EliminarRepuesto extends Application{
             System.out.println("CONEXION EXITOSA");
             Cliente c;
             while (re.next()){                 
-                System.out.println(re.getString("numSR")+"--"+re.getString("cantidad")+"--"+re.getString("descripcion")+"--"+re.getString("valorRep")+"--"+re.getString("frecuenciaUso")+"--"+re.getString("numFactura"));
+                System.out.println(re.getString("numSR")+"--"+re.getString("cantidad"));
                 
             }
         }catch (ClassNotFoundException exc){

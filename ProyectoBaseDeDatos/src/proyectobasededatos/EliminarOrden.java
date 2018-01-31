@@ -87,7 +87,7 @@ public class EliminarOrden extends Application{
         primaryStage.setScene(scene);
         primaryStage.setMinHeight(450);
         primaryStage.show();
-    
+        Conexion();
     
     }
     public void Botones(Stage primaryStage){

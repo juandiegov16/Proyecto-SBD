@@ -87,7 +87,7 @@ public class EliminarBote extends Application{
         primaryStage.setScene(scene);
         primaryStage.setMinHeight(450);
         primaryStage.show();
-    
+        Conexion();
     
     }
     public void Botones(Stage primaryStage){
@@ -190,7 +190,7 @@ public class EliminarBote extends Application{
             System.out.println("CONEXION EXITOSA");
             Cliente c;
             while (re.next()){                 
-                System.out.println(re.getString("numSB")+"--"+re.getString("marcaBote")+"--"+re.getString("modeloBote")+"--"+re.getString("eslora")+"--"+re.getString("cedulaRUC"));
+                System.out.println(re.getString("numSB")+"--"+re.getString("marcaBote"));
                 
             }
         }catch (ClassNotFoundException exc){
