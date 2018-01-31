@@ -99,7 +99,7 @@ CREATE VIEW ordenFactura AS
 /*Usuarios*/
 	#Admin de la base de datos, tiene todos los permisos en todas las tablas. Puede otorgar permisos
 create user 'admin'@'localhost' identified by 'drios';
-grant all privileges on taller.* to 'danny'@'localhost' with grant option;
+grant all privileges on taller.* to 'admin'@'localhost' with grant option;
 	
     #Ingeniero, usuario tipo admin pero no puede otorgar permisos
 create user 'carlos'@'localhost' identified by 'ceva57';
