@@ -480,7 +480,7 @@ public class ProyectoBaseDeDatos extends Application {
         root.setBottom(deepB);
         Scene scene = new Scene(root); 
 
-        /*
+        
         String[] options = {"Cliente", "Administrador "};
         int seleccion = JOptionPane.showOptionDialog(null, "Es necesario que seleccione de que tipo es el usuario", "Ingreso al Programa", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE,null, options, options[0]);
         if(JOptionPane.OK_OPTION == seleccion){
@@ -504,7 +504,7 @@ public class ProyectoBaseDeDatos extends Application {
         }else{
             System.out.println("BIENVENIDO ADMINISTRADOR!!!!");
 
-        };*/
+        };
 
         
        
