@@ -10,6 +10,6 @@ Como ejecutar el programa:
 5. Luego, si esta dentro de consultar cliente, digite la cedula del cliente, esta la puede observar en la consola, una vez realizado de click en CONSULTAR. 
 Automaticamente el programa mostrara la informacion respectiva del cliente (nombre, direccion, telefono).
 6. La ventana consulta bote tiene la misa funcionalidad que la anterior solamente en estecaso debera ingresar el serial que tambien se mostrara en consola, para evitar
-el cambio de ventana a workbrench.
-
+el cambio de ventana a workbrench.(por cuestiones de tiempo decidimos hacerlo de esta forma).
+7. Las ventanas de añadir y borrar tienen la misma logica que las anteriores.
 NOTA : Asegurese de limpiar y construir el proyecto.
