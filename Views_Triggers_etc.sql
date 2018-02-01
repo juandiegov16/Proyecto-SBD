@@ -1,5 +1,22 @@
 use taller;
-/*Triggers*/
+/*Stored Procedures*/
+delimiter //
+CREATE PROCEDURE datosCliente (IN cedulaCliente int)
+BEGIN
+	select nombreCliente, direccionCliente, telefonoCliente
+    from cliente
+    where cedulaCliente = cedulaRUC;
+END//
+delimiter ;
+
+delimiter //
+CREATE PROCEDURE datosBote (IN serialBote int)
+BEGIN
+	select b.modeloBote, b.marcaBote, b.eslora, c.nombreCliente as 'Dueño'
+    from bote b inner join cliente c on b.cedulaRUC = c.cedulaRUC
+    where serialBote = numSB;
+END//
+delimiter ;
 
 
 
@@ -89,7 +106,14 @@ CREATE VIEW ordenFactura AS
         facturaservicio f ON f.numOrden = o.numOrden;
         
         
-/*Stored Procedures*/
+/*Triggers*/
+
+/*Para mostrar tabla tras inserción*/
+
+
+
+
+/*Para mostrar tabla tras borrado*/
 
 
 
