@@ -104,7 +104,7 @@ CREATE VIEW ordenFactura AS
         
 /*Triggers*/
 
-/*Emite alerta tras inserción de bote*/
+	#Emite alerta tras inserción de bote
 delimiter //
 create trigger insercionBote after insert on bote for each row
 begin
@@ -112,18 +112,13 @@ begin
 end//
 delimiter ;
 
-
-
-/*Emite alerta tras borrado de cliente*/
+	#Emite alerta tras borrado de cliente
 delimiter //
 create trigger borradoCliente after delete on cliente for each row
 begin
 	SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'HA BORRADO EXITOSAMENTE UN CLIENTE.';
 end//
 delimiter ;
-
-
-
 
 
 /*Usuarios*/

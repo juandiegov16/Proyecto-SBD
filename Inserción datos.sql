@@ -29,8 +29,18 @@ insert into bote values (160, 'Yamaha', 'Kaichou', 9, 0909206724);
 
 
 #Inserción de FacturaServicio
-
+insert into facturaservicio values('2007-01-10', 10, 'Instalación', 'Sin desc.', 615.64, 'Cheque', 15, 0917947053, 10, 0815946523);
+insert into facturaservicio values('2007-01-10', 11, 'Reparación', 'Sin desc.', 28.19, 'Cheque', 19, 0917947053, 10, 0815946523);
 
 
 
 #Inserción de Repuesto
+insert into repuesto values(15, 20, 'Tornillo negro', 1.03, 'Raro', 10);
+insert into repuesto values(19, 18, 'Tornillo gris', 1.04, 'Ocasional', 11);
+
+
+#Inserción de OrdenTrabajo
+insert into ordentrabajo values(10, '2007-01-05');
+insert into ordentrabajo values(11, '2007-01-08');
+
+
