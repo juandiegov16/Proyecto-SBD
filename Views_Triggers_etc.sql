@@ -18,10 +18,6 @@ BEGIN
 END//
 delimiter ;
 
-
-
-
-
 /*Vistas*/
 	#Muestra los botes de los clientes, cada uno con sus respectivos motores.
 drop view if exists botesMotoresCliente;
@@ -108,13 +104,23 @@ CREATE VIEW ordenFactura AS
         
 /*Triggers*/
 
-/*Para mostrar tabla tras inserción*/
+/*Emite alerta tras inserción de bote*/
+delimiter //
+create trigger insercionBote after insert on bote for each row
+begin
+	SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'HA INSERTADO EXITOSAMENTE UN BOTE.';
+end//
+delimiter ;
 
 
 
-
-/*Para mostrar tabla tras borrado*/
-
+/*Emite alerta tras borrado de cliente*/
+delimiter //
+create trigger borradoCliente after delete on cliente for each row
+begin
+	SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'HA BORRADO EXITOSAMENTE UN CLIENTE.';
+end//
+delimiter ;
 
 
 
